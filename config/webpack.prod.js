@@ -205,7 +205,7 @@ module.exports = {
                 target: 'http://118.178.254.102:1254',
                 ws: true,
                 changeOrigin: true,
-                PathRewrite: {'^/peaceful': ''},
+                pathRewrite: {'^/peaceful': ''},
             }
         }
     },

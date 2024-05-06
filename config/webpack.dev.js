@@ -2,8 +2,8 @@
 const path = require("path");
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
-const { DefinePlugin } = require("webpack");
+const {VueLoaderPlugin} = require("vue-loader");
+const {DefinePlugin} = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 
 const getStyleLoaders = (preProcessor) => {
@@ -150,14 +150,14 @@ module.exports = {
         hot: true,
         compress: true,
         historyApiFallback: true, // 解决vue-router刷新404问题
-        proxy: {
-            '/peaceful': {
-                target: 'http://118.178.254.102:1254',
+        proxy: [
+            {
+                context: ['/peaceful'],
                 ws: true,
                 changeOrigin: true,
-                PathRewrite: {'^/peaceful': ''},
+                target: 'http://118.178.254.102:1254',
             }
-        }
+        ]
     },
     mode: "development",
     devtool: "cheap-module-source-map",

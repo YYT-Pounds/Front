@@ -1,10 +1,19 @@
-<script setup>
-import index from "./pages/index/index.vue";
+<script lang="tsx" setup>
+import PageAside from "./components/page-aside/index.vue"
+import PageLayout from "./components/page-layout/index.vue"
 </script>
 
 <template>
-  <component :is="index"/>
+  <div class="page-wrap">
+    <PageAside/>
+    <PageLayout/>
+  </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
+.page-wrap {
+  background-color: #999999;
+  height: 100%;
+  display: flex;
+}
 </style>

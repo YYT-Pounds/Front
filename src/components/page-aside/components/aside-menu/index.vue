@@ -1,20 +1,16 @@
-<script setup lang="ts">
+<script lang="tsx" setup>
 
 </script>
 
 <template>
-<div class="aside-menu">
-  <el-scrollbar>
-    <p style="color: aliceblue">1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-  </el-scrollbar>
-</div>
+  <div class="aside-menu">
+    <el-scrollbar>
+      <p style="color: aliceblue">1</p>
+
+    </el-scrollbar>
+  </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 
 </style>

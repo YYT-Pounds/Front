@@ -16,14 +16,14 @@ const a = reactive(props.data)
 function render() {
   const type = resolveComponent(a.type)
   return h(type, {
-    modelValue: a.name,
-    onInput(value) {
-      a.name = value
-    },
-    style:{
-      width: '100px',
-      height: '100px'
-    }
+        modelValue: a.name,
+        onInput(value) {
+          a.name = value
+        },
+        style:{
+          width: '100px',
+          height: '100px'
+        }
       }
   )
 }

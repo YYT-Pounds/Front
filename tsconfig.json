@@ -3,10 +3,13 @@
     "types": [
       "node"
     ],
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "public/*": [
+        "./src/public/*"
       ]
     },
     "target": "ES2020",

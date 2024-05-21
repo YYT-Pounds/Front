@@ -19,7 +19,6 @@ const config = ref()
 const getData = async () => {
   const result = await axiosConfig()
   config.value = result.data
-  console.log(config.value)
 }
 
 init()

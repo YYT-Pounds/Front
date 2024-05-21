@@ -17,8 +17,8 @@ export default defineConfig({
                 find: '@',
                 replacement: path.resolve(projectRootDir, 'src')
             },
-
-        ]
+        ],
+        extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.vue']
     },
     server: {
         open: true,

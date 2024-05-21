@@ -31,7 +31,8 @@ const handleClick = (item: any) => {
 <style lang="scss" scoped>
 .aside-menu {
   .item {
-    padding: 15px;
+    padding: 10px;
+    margin:5px;
     cursor: pointer;
 
     span {

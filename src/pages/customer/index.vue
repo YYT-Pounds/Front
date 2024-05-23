@@ -8,13 +8,43 @@ export default {
 </script>
 
 <script lang="tsx" setup>
+import PageModel from '@/components/page-model/index.vue'
+import {ref} from "vue";
+import {ConfigModel} from "@/model/base/config/config";
 
+const name = ref('customer')
+const handleClick = () => {
+  console.log(1)
+}
+
+/**
+ * 页面模型
+ */
+const config: ConfigModel = {
+  searchForm: [
+    {
+      type: 'el-input',
+      prop: name,
+    }
+  ],
+  programForm: [
+    {
+      label: "测试",
+      type: 'el-button',
+      event: handleClick,
+    }
+  ]
+}
 </script>
 
 <template>
-
+  <div class="page-wrap">
+    <PageModel :config="config"/>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-
+.page-wrap {
+  height: 200px;
+}
 </style>

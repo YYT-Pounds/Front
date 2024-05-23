@@ -1,4 +1,7 @@
 <script lang="tsx" setup>
+/**
+ * 侧边菜单
+ */
 import AsideLogo from "./components/aside-logo/index.vue"
 import AsideMenu from "./components/aside-menu/index.vue"
 </script>

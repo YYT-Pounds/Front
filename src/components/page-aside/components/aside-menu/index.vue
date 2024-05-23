@@ -21,7 +21,7 @@ const handleClick = (item: any) => {
 <template>
   <div class="aside-menu">
     <el-scrollbar>
-      <div v-for="(item,index) of routerList" :key="index" class="item" @click="handleClick">
+      <div v-for="(item,index) of routerList" :key="index" class="item" @click="handleClick(item)">
         <span>{{ item.meta.title }}</span>
       </div>
     </el-scrollbar>

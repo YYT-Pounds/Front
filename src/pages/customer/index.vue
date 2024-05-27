@@ -33,6 +33,13 @@ const config: ConfigModel = {
       type: 'el-button',
       event: handleClick,
     },
+  ],
+  table:[
+    {
+      label:"测试用滴",
+      prop:"name",
+      width:120
+    }
   ]
 }
 </script>

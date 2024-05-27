@@ -8,6 +8,14 @@ interface ConfigBaseModel {
 
 interface ConfigItemModel {
     /**
+     * 请求地址
+     */
+    url: string;
+    /**
+     * 请求方法
+     */
+    method: string;
+    /**
      * 搜索组件模型
      */
     searchForm: SearchFormItemModel[];

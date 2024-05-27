@@ -21,6 +21,8 @@ const handleClick = () => {
  * 页面模型
  */
 const config: ConfigModel = {
+  url: "http://118.178.254.102:1254/peaceful/admin/select",
+  method: "get",
   searchForm: [
     {
       type: 'el-input',
@@ -34,11 +36,31 @@ const config: ConfigModel = {
       event: handleClick,
     },
   ],
-  table:[
+  table: [
     {
-      label:"测试用滴",
-      prop:"name",
-      width:120
+      label: "用户id",
+      prop: "id",
+      width: 120
+    },
+    {
+      label: "用户名",
+      prop: "name",
+      width: 120
+    },
+    {
+      label: "账号",
+      prop: "account",
+      width: 120
+    },
+    {
+      label: "密码",
+      prop: "password",
+      width: 120
+    },
+    {
+      label: "备忘录",
+      prop: "note",
+      width: 120
     }
   ]
 }

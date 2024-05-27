@@ -7,11 +7,28 @@ import ProgramForm from './components/program-form/index.vue'
 import Table from './components/table/index.vue'
 import {ConfigMainModel} from "@/model/base/config/config";
 import {ref} from "vue";
+import request from '@/apis/request'
 
 /**
  * 定义prop
  */
 const props = defineProps<ConfigMainModel>()
+
+/**
+ * 初始化数据
+ */
+const init = () => {
+  refreshTableData()
+}
+
+/**
+ * 获取表格数据
+ */
+const tableData = ref()
+const refreshTableData = async () => {
+  const result = await request({url: props.config.url, method: props.config.method})
+  tableData.value = result.data
+}
 
 /**
  * 提取数据
@@ -20,6 +37,14 @@ const searchForm = ref(props.config.searchForm)
 const programForm = ref(props.config.programForm)
 const table = ref(props.config.table)
 
+init()
+
+/**
+ * 暴露
+ */
+defineExpose({
+  refreshTableData
+})
 </script>
 
 <template>
@@ -31,7 +56,7 @@ const table = ref(props.config.table)
       <ProgramForm :programForm="programForm"></ProgramForm>
     </div>
     <div class="table">
-      <Table :table="table"></Table>
+      <Table :table="table" :tableData="tableData"></Table>
     </div>
   </div>
 </template>

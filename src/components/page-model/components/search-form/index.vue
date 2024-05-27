@@ -28,6 +28,7 @@ function render({item}: any) {
     }
   })
 }
+
 </script>
 
 <template>

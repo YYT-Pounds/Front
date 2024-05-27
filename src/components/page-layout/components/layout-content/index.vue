@@ -5,13 +5,11 @@
 </script>
 
 <template>
-  <div class="page-wrap">
+  <div class="layout-content">
     <router-view></router-view>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.page-wrap {
-  height: 100%;
-}
+
 </style>

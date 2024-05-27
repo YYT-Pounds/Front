@@ -2,7 +2,7 @@
 /**
  * 表格组件
  */
-import {h, ref, watch} from 'vue'
+import {ref, watch} from 'vue'
 import {TableItemModel} from "@/model/base/config/table/table-item";
 
 /**
@@ -19,18 +19,6 @@ const props = defineProps<{
 const tableData = ref()
 
 /**
- * 初始化
- */
-const render = ({item}: any) => {
-  console.log(item.prop)
-  return h('el-table-column', {
-    label: item.label,
-    prop: item.prop,
-    minWidth: item.minWidth
-  })
-}
-
-/**
  * 监视表格数据
  */
 watch(() => props.tableData, function () {
@@ -39,13 +27,16 @@ watch(() => props.tableData, function () {
 </script>
 
 <template>
-  <div class="table" style="height: 100%">
+  <div class="table">
     <el-table :data="tableData">
-      <el-table-column v-for="(item,index) of props.table" :key="index" :prop="item.prop" :width="item.width" :label="item.label"  class="table-item"/>
+      <el-table-column v-for="(item,index) of props.table" :key="index" :label="item.label" :prop="item.prop"
+                       :width="item.width" class="table-item"/>
     </el-table>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
+.table {
+  height: 100%;
+}
 </style>

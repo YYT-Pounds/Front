@@ -48,7 +48,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="page-wrap">
+  <div class="content-logout">
     <div class="search-form">
       <SearchForm :searchForm="searchForm"></SearchForm>
     </div>
@@ -62,7 +62,7 @@ defineExpose({
 </template>
 
 <style lang="scss" scoped>
-.page-wrap {
+.content-logout {
   max-height: 100%;
   overflow: auto;
 }

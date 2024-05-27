@@ -67,13 +67,13 @@ const config: ConfigModel = {
 </script>
 
 <template>
-  <div class="page-wrap">
+  <div class="customer">
     <PageModel :config="config"/>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.page-wrap {
-  height: 200px;
+.customer {
+  height: 100%;
 }
 </style>

@@ -10,7 +10,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="page-wrap">
+  <div class="layout-header">
     <div class="left">
       {{ route.meta?.title }}
     </div>
@@ -18,7 +18,7 @@ const route = useRoute()
 </template>
 
 <style lang="scss" scoped>
-.page-wrap{
+.layout-header {
   display: flex;
   justify-content: space-between;
   padding: 10px;

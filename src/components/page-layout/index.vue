@@ -17,6 +17,6 @@ import LayoutContent from './components/layout-content/index.vue'
 .page-layout {
   background-color: #efefef;
   flex: 1;
-  padding:5px 30px 20px 30px;
+  padding: 5px 30px 20px 30px;
 }
 </style>

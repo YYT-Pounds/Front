@@ -28,15 +28,34 @@ watch(() => props.tableData, function () {
 
 <template>
   <div class="table">
-    <el-table :data="tableData">
-      <el-table-column v-for="(item,index) of props.table" :key="index" :label="item.label" :prop="item.prop"
-                       :width="item.width" class="table-item"/>
-    </el-table>
+    <div class="container">
+      <el-table :data="tableData" class="table-content" height="100%" style="width:100%">
+        <el-table-column v-for="(item,index) of props.table" :key="index" :label="item.label" :prop="item.prop"
+                         :min-width="item.width" class="table-item"/>
+      </el-table>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .table {
-  height: 100%;
+  border: 2px solid #aaaaaa;
+  margin: 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60vh;
+
+  .container {
+    flex: 1;
+    position: relative;
+
+    :deep(.el-table) {
+      position: absolute;
+    }
+  }
 }
+
+
 </style>

@@ -23,9 +23,6 @@ function render({item}: any) {
       item.prop = value
     },
     props: item.props,
-    style: {
-      width: '200px'
-    }
   })
 }
 
@@ -34,9 +31,22 @@ function render({item}: any) {
 <template>
   <div class="search-form">
     <render v-for="(item,index) of props.searchForm" :key="index" :item="item" class="form-item"></render>
+    <el-button class="form-button">重置</el-button>
+    <el-button type="primary" class="form-button">筛选</el-button>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.search-form {
+  flex:0;
+  display: flex;
+  .form-item {
+    width: 150px;
+    padding: 5px;
+  }
 
+  .form-button{
+    margin:5px;
+  }
+}
 </style>

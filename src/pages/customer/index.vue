@@ -27,6 +27,10 @@ const config: ConfigModel = {
     {
       type: 'el-input',
       prop: name,
+    },
+    {
+      type: 'el-input',
+      prop: name,
     }
   ],
   programForm: [

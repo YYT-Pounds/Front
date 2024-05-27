@@ -1,4 +1,5 @@
-<script lang="tsx" setup>/**
+<script lang="tsx" setup>
+/**
  * 主体-头部
  */
 import {useRoute} from "vue-router";
@@ -22,5 +23,12 @@ const route = useRoute()
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  flex:0;
+
+  .left{
+    font-size: 22px;
+    font-weight: bolder;
+    color: #333333;
+  }
 }
 </style>

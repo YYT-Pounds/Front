@@ -63,6 +63,8 @@ defineExpose({
 
 <style lang="scss" scoped>
 .content-logout {
+  display: flex;
+  flex-direction: column;
   max-height: 100%;
   overflow: auto;
 }

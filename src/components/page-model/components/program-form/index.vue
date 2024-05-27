@@ -16,6 +16,7 @@ const props = defineProps<{
  * 初始化
  */
 function render({item}: any) {
+  console.log(item)
   const type = resolveComponent(item.type)
   return h(type, {
     onClick: item.event,
@@ -23,7 +24,8 @@ function render({item}: any) {
     style: {
       width: '200px'
     },
-  })
+  },
+  [h('span',item.label)])
 }
 </script>
 

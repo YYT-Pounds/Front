@@ -32,7 +32,7 @@ const config: ConfigModel = {
       label: "测试",
       type: 'el-button',
       event: handleClick,
-    }
+    },
   ]
 }
 </script>

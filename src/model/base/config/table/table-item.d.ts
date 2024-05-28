@@ -1,12 +1,31 @@
 interface TableItemBaseModel {
-    label: string,
-    prop: any,
-    width: number,
-    props?: TableItemPropsModel
+    /**
+     * 表头名称
+     */
+    label: string;
+    /**
+     * 值
+     */
+    prop: any;
+    /**
+     * 宽度
+     */
+    width?: number;
+    /**
+     * 最小宽度
+     */
+    minWidth?: number;
+    /**
+     * 绑定
+     */
+    props?: TableItemPropsModel;
 }
 
 interface TableItemPropsModel {
-    sortable?: boolean
+    /**
+     * 是否排序
+     */
+    sortable?: boolean;
 }
 
 export type TableItemModel = TableItemBaseModel

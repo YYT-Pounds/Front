@@ -2,14 +2,14 @@
 /**
  * 表格组件
  */
-import {ref, watch} from 'vue'
-import {TableItemModel} from "@/model/base/config/table/table-item";
+import {h, ref, resolveComponent, watch} from 'vue'
+import {TableModel} from "@/model/base/config/table/table";
 
 /**
  * 定义props
  */
 const props = defineProps<{
-  table?: TableItemModel[];
+  table: TableModel,
   tableData?: any[]
 }>()
 
@@ -17,6 +17,18 @@ const props = defineProps<{
  * 数据
  */
 const tableData = ref()
+
+/**
+ * 操作栏初始化
+ */
+function render({item}: any) {
+  const type = resolveComponent(item.type)
+  return h(type, {
+        link: item.props.link,
+        type: item.props.type
+      },
+      [h('span', item.label)])
+}
 
 /**
  * 监视表格数据
@@ -29,9 +41,20 @@ watch(() => props.tableData, function () {
 <template>
   <div class="table">
     <div class="container">
-      <el-table :data="tableData" class="table-content" height="100%" style="width:100%">
-        <el-table-column v-for="(item,index) of props.table" :key="index" :label="item.label" :prop="item.prop"
-                         :min-width="item.width" class="table-item"/>
+      <el-table :border="props.table.props?.border" :data="tableData" :stripe="props.table.props?.stripe"
+                class="table-content" height="100%"
+                style="width:100%">
+        <el-table-column v-if="props.table.selection" type="selection" width="55"/>
+        <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label"
+                         :min-width="item.minWidth"
+                         :prop="item.prop"
+                         :width="item.width" class="table-item"/>
+        <el-table-column v-if="props.table?.operation?.els" :width="props.table.operation?.width" label="操作栏">
+          <template #default="scope">
+            <render v-for="(item,index) of props.table.operation?.els" :key="index" :item="item"
+                    @click="item.event(scope.row)"/>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>

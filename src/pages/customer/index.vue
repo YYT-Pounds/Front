@@ -13,8 +13,8 @@ import {ref} from "vue";
 import {ConfigModel} from "@/model/base/config/config";
 
 const name = ref('customer')
-const handleClick = () => {
-  console.log(1)
+const handleClick = (data: any) => {
+  console.log(data)
 }
 
 /**
@@ -40,33 +40,54 @@ const config: ConfigModel = {
       event: handleClick,
     },
   ],
-  table: [
-    {
-      label: "用户id",
-      prop: "id",
-      width: 120
+  table: {
+    operation: {
+      width: 60,
+      els: [
+        {
+          type: "el-button",
+          label: "测试",
+          event: handleClick,
+          props: {
+            type: "primary",
+            link: true
+          }
+        }
+      ]
     },
-    {
-      label: "用户名",
-      prop: "name",
-      width: 120
+    props: {
+      stripe: false,
+      border: false,
     },
-    {
-      label: "账号",
-      prop: "account",
-      width: 120
-    },
-    {
-      label: "密码",
-      prop: "password",
-      width: 120
-    },
-    {
-      label: "备忘录",
-      prop: "note",
-      width: 120
-    }
-  ]
+    selection: false,
+    els: [
+      {
+        label: "用户id",
+        prop: "id",
+        minWidth: 120
+      },
+      {
+        label: "用户名",
+        prop: "name",
+        minWidth: 120
+      },
+      {
+        label: "账号",
+        prop: "account",
+        width: 120
+      },
+      {
+        label: "密码",
+        prop: "password",
+        width: 120
+      },
+      {
+        label: "备忘录",
+        prop: "note",
+        width: 120
+      }
+    ]
+  }
 }
 </script>
 

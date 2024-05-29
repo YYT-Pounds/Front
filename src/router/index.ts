@@ -7,7 +7,7 @@ import department from "../pages/department/index.vue";
 const routes = [
     {
         path: "/",
-        redirect: "/home"
+        redirect: "/index"
     },
     {
         path: "/index",

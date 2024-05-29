@@ -16,6 +16,10 @@ interface ConfigItemModel {
      */
     method: string;
     /**
+     * 自定义参数
+     */
+    otherParams?: any;
+    /**
      * 搜索组件模型
      */
     searchForm: SearchFormItemModel[];

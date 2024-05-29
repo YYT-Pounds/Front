@@ -63,7 +63,7 @@ watch(() => props.tableData, function () {
 <style lang="scss" scoped>
 .table {
   border: 2px solid #aaaaaa;
-  margin: 5px;
+  margin: 10px;
   flex: 1;
   display: flex;
   flex-direction: column;

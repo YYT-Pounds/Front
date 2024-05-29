@@ -10,17 +10,22 @@ export default {
 <script lang="tsx" setup>
 import PageModel from '@/components/page-model/index.vue'
 import {ConfigModel} from "@/model/base/config/config";
+import {ref} from "vue";
 
-const handleClick = (data: any) => {
-  console.log(data)
+const handleClick = () => {
+  pageModelRef.value.refreshTableData()
 }
 
 /**
  * 页面模型
  */
+const pageModelRef = ref()
 const config: ConfigModel = {
   url: "http://118.178.254.102:1254/peaceful/admin/select",
   method: "get",
+  otherParams: {
+    id: 1111
+  },
   searchForm: [
     {
       type: 'el-input',
@@ -41,8 +46,11 @@ const config: ConfigModel = {
   ],
   programForm: [
     {
-      label: "测试",
+      label: "新增",
       type: 'el-button',
+      props: {
+        type: "primary",
+      },
       event: handleClick,
     },
   ],
@@ -99,7 +107,7 @@ const config: ConfigModel = {
 
 <template>
   <div class="customer">
-    <PageModel :config="config"/>
+    <PageModel ref="pageModelRef" :config="config"/>
   </div>
 </template>
 

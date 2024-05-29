@@ -26,7 +26,11 @@ const init = () => {
  */
 const tableData = ref()
 const refreshTableData = async (params?: any) => {
-  const result = await request({url: props.config.url, method: props.config.method, params: params})
+  const result = await request({
+    url: props.config.url,
+    method: props.config.method,
+    params: {...params, ...props.config.otherParams}
+  })
   tableData.value = result.data
 }
 
@@ -45,6 +49,7 @@ init()
 defineExpose({
   refreshTableData
 })
+
 </script>
 
 <template>

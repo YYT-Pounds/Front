@@ -19,7 +19,8 @@ function render({item}: any) {
   const type = resolveComponent(item.type)
   return h(type, {
         onClick: item.event,
-        props: item.props,
+        link: item.props.link,
+        type: item.props.type
       },
       [h('span', item.label)])
 }

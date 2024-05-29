@@ -19,6 +19,10 @@ interface ProgramFormItemBaseModel {
 
 interface ProgramFormItemPropsModel {
     /**
+     * 按钮样式
+     */
+    type?: string;
+    /**
      * 提示文本
      */
     placeholder?: string;

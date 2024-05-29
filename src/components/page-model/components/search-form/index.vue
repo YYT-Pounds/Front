@@ -2,14 +2,14 @@
 /**
  * 搜索组件
  */
-import {h, resolveComponent} from 'vue'
+import {h, ref, resolveComponent} from 'vue'
 import {SearchFormItemModel} from "@/model/base/config/search-form/search-form-item";
 
 /**
  * 定义emit
  */
 const emit = defineEmits<{
-  (e: 'refresh', value: any): void
+  (e: 'refreshTableData', value: any): void
 }>()
 
 /**
@@ -20,14 +20,19 @@ const props = defineProps<{
 }>()
 
 /**
+ * 使用映射接收数据
+ */
+let searchObj: any = ref({})
+
+/**
  * 初始化
  */
 function render({item}: any) {
   const type = resolveComponent(item.type)
   return h(type, {
-    modelValue: eval(`${item.prop}`),
+    modelValue: searchObj.value[item.prop],
     onInput: (value: any) => {
-      item.prop = value
+      searchObj.value[item.prop] = value
     },
     placeholder: item.props.placeholder,
     clearable: item.props.clearable
@@ -38,21 +43,14 @@ function render({item}: any) {
  * 重置
  */
 const handleReset = () => {
-  emit('refresh', {})
+  emit('refreshTableData', {})
 }
 
 /**
  * 筛选
  */
 const handleSearch = () => {
-  let list: any = []
-  props.searchForm?.map((item: SearchFormItemModel) => {
-    list.push(item.prop)
-    return item
-  })
-  emit('refresh', {
-    ...list
-  })
+  emit('refreshTableData', searchObj.value)
 }
 
 </script>

@@ -25,6 +25,14 @@ const props = defineProps<{
  */
 const tableRef = ref()
 const tableData = ref()
+/**
+ * 当前页码
+ */
+const currentPage = ref()
+/**
+ * 一页显示多少数据
+ */
+const pageSize = ref()
 
 /**
  * 操作栏初始化
@@ -43,6 +51,19 @@ function render({item}: any) {
  */
 const handleSelectionChange = (rows: any[]) => {
   emit('handleSelectionChange', rows)
+}
+
+/**
+ * 监听每页数据量改变
+ */
+const handleSizeChange = (val: number) => {
+  pageSize.value = val
+}
+/**
+ * 监听页码变化
+ */
+const handleCurrentChange = (val: number) => {
+  currentPage.value = val
 }
 
 /**
@@ -72,20 +93,36 @@ watch(() => props.tableData, function () {
         </el-table-column>
       </el-table>
     </div>
+    <div class="page">
+      <div class="left">
+        <el-button class="left-btn" type="primary">清空选择</el-button>
+      </div>
+      <div class="right">
+        <el-pagination
+            v-model:current-page="currentPage"
+            v-model:page-size="pageSize"
+            :page-sizes="[100, 200, 300, 400]"
+            :total="400"
+            layout="total, sizes, prev, pager, next, jumper"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .table {
-  border: 2px solid #aaaaaa;
-  margin: 10px;
+  margin: 15px 5px 5px 5px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 65vh;
+  height: 70vh;
 
   .container {
+    border: 2px solid #aaaaaa;
     flex: 1;
     position: relative;
 
@@ -93,7 +130,18 @@ watch(() => props.tableData, function () {
       position: absolute;
     }
   }
+
+  .page {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    .left {
+      .left-btn {
+        width: 100px;
+        height: 40px;
+      }
+    }
+  }
 }
-
-
 </style>

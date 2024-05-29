@@ -69,7 +69,7 @@ const handleSearch = () => {
   display: flex;
 
   .form-item {
-    width: 150px;
+    width: 180px;
     padding: 5px;
   }
 

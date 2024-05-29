@@ -40,7 +40,7 @@ function render({item}: any) {
 
   .form-item {
     margin: 5px;
-    height: 35px;
+    height: 40px;
     width: 100px;
   }
 }

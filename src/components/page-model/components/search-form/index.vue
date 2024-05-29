@@ -6,6 +6,13 @@ import {h, resolveComponent} from 'vue'
 import {SearchFormItemModel} from "@/model/base/config/search-form/search-form-item";
 
 /**
+ * 定义emit
+ */
+const emit = defineEmits<{
+  (e: 'refresh', value: any): void
+}>()
+
+/**
  * 定义props
  */
 const props = defineProps<{
@@ -22,7 +29,30 @@ function render({item}: any) {
     onInput(value: any) {
       item.prop = value
     },
-    props: item.props,
+    placeholder: item.props.placeholder,
+    clearable: item.props.clearable
+  })
+}
+
+/**
+ * 重置
+ */
+const handleReset = () => {
+  emit('refresh', {})
+}
+
+/**
+ * 筛选
+ */
+const handleSearch = () => {
+  let list: any = []
+  props.searchForm?.map((item: SearchFormItemModel) => {
+    list.push(item.prop)
+    return item
+  })
+  console.log(...list)
+  emit('refresh', {
+    ...list
   })
 }
 
@@ -31,22 +61,23 @@ function render({item}: any) {
 <template>
   <div class="search-form">
     <render v-for="(item,index) of props.searchForm" :key="index" :item="item" class="form-item"></render>
-    <el-button class="form-button">重置</el-button>
-    <el-button type="primary" class="form-button">筛选</el-button>
+    <el-button class="form-button" @click="handleReset">重置</el-button>
+    <el-button class="form-button" type="primary" @click="handleSearch">筛选</el-button>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .search-form {
-  flex:0;
+  flex: 0;
   display: flex;
+
   .form-item {
     width: 150px;
     padding: 5px;
   }
 
-  .form-button{
-    margin:5px;
+  .form-button {
+    margin: 5px;
   }
 }
 </style>

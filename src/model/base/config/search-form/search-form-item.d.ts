@@ -10,7 +10,7 @@ interface SearchFormItemBaseModel {
     /**
      * 值
      */
-    prop: any;
+    prop: string;
     /**
      * 绑定
      */

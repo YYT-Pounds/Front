@@ -25,8 +25,8 @@ const init = () => {
  * 获取表格数据
  */
 const tableData = ref()
-const refreshTableData = async () => {
-  const result = await request({url: props.config.url, method: props.config.method})
+const refreshTableData = async (params?: any) => {
+  const result = await request({url: props.config.url, method: props.config.method, params: params})
   tableData.value = result.data
 }
 
@@ -50,7 +50,7 @@ defineExpose({
 <template>
   <div class="content-logout">
     <div class="search-form">
-      <SearchForm :searchForm="searchForm"></SearchForm>
+      <SearchForm :searchForm="searchForm" @refreshTableData="refreshTableData"></SearchForm>
     </div>
     <div class="program-form">
       <ProgramForm :programForm="programForm"></ProgramForm>

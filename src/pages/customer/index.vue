@@ -9,10 +9,8 @@ export default {
 
 <script lang="tsx" setup>
 import PageModel from '@/components/page-model/index.vue'
-import {ref} from "vue";
 import {ConfigModel} from "@/model/base/config/config";
 
-const name = ref('customer')
 const handleClick = (data: any) => {
   console.log(data)
 }
@@ -26,11 +24,19 @@ const config: ConfigModel = {
   searchForm: [
     {
       type: 'el-input',
-      prop: name,
+      prop: "name",
+      props: {
+        placeholder: "请输入名称",
+        clearable: true,
+      }
     },
     {
       type: 'el-input',
-      prop: name,
+      prop: "account",
+      props: {
+        placeholder: "请输入账号",
+        clearable: true
+      }
     }
   ],
   programForm: [

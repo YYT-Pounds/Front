@@ -33,7 +33,7 @@ function render({item}: any) {
 
 <style lang="scss" scoped>
 .program-form {
-  flex:0;
+  flex: 0;
   margin-top: 5px;
   display: flex;
 

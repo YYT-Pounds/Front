@@ -25,8 +25,8 @@ const props = defineProps<{
 function render({item}: any) {
   const type = resolveComponent(item.type)
   return h(type, {
-    modelValue: item.prop,
-    onInput(value: any) {
+    modelValue: eval(`${item.prop}`),
+    onInput: (value: any) => {
       item.prop = value
     },
     placeholder: item.props.placeholder,
@@ -50,7 +50,6 @@ const handleSearch = () => {
     list.push(item.prop)
     return item
   })
-  console.log(...list)
   emit('refresh', {
     ...list
   })

@@ -6,6 +6,13 @@ import {h, ref, resolveComponent, watch} from 'vue'
 import {TableModel} from "@/model/base/config/table/table";
 
 /**
+ * 定义emit
+ */
+const emit = defineEmits<{
+  (e: 'handleSelectionChange', rows: any[]): void
+}>()
+
+/**
  * 定义props
  */
 const props = defineProps<{
@@ -16,6 +23,7 @@ const props = defineProps<{
 /**
  * 数据
  */
+const tableRef = ref()
 const tableData = ref()
 
 /**
@@ -31,6 +39,13 @@ function render({item}: any) {
 }
 
 /**
+ * 多选
+ */
+const handleSelectionChange = (rows: any[]) => {
+  emit('handleSelectionChange', rows)
+}
+
+/**
  * 监视表格数据
  */
 watch(() => props.tableData, function () {
@@ -41,9 +56,9 @@ watch(() => props.tableData, function () {
 <template>
   <div class="table">
     <div class="container">
-      <el-table :border="props.table.props?.border" :data="tableData" :stripe="props.table.props?.stripe"
-                class="table-content" height="100%"
-                style="width:100%">
+      <el-table ref="tableRef" :border="props.table.props?.border" :data="tableData"
+                :stripe="props.table.props?.stripe" class="table-content"
+                height="100%" style="width:100%" @selection-change="handleSelectionChange">
         <el-table-column v-if="props.table.selection" type="selection" width="55"/>
         <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label"
                          :min-width="item.minWidth"
@@ -68,7 +83,7 @@ watch(() => props.tableData, function () {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 60vh;
+  height: 65vh;
 
   .container {
     flex: 1;

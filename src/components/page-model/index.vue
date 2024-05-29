@@ -25,6 +25,10 @@ const init = () => {
  * 获取表格数据
  */
 const tableData = ref()
+const rows = ref()
+/**
+ * 刷新表格
+ */
 const refreshTableData = async (params?: any) => {
   const result = await request({
     url: props.config.url,
@@ -32,6 +36,20 @@ const refreshTableData = async (params?: any) => {
     params: {...params, ...props.config.otherParams}
   })
   tableData.value = result.data
+}
+
+/**
+ * 表格多选数据回调
+ */
+const handleSelectionChange = (value: any[]) => {
+  rows.value = value
+}
+
+/**
+ * 提取表格选中数据
+ */
+const getRowsData = () => {
+  return rows.value
 }
 
 /**
@@ -47,7 +65,8 @@ init()
  * 暴露
  */
 defineExpose({
-  refreshTableData
+  refreshTableData,
+  getRowsData
 })
 
 </script>
@@ -61,7 +80,7 @@ defineExpose({
       <ProgramForm :programForm="programForm"></ProgramForm>
     </div>
     <div class="table">
-      <Table :table="table" :tableData="tableData"></Table>
+      <Table :table="table" :tableData="tableData" @handleSelectionChange="handleSelectionChange"></Table>
     </div>
   </div>
 </template>

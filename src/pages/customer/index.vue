@@ -13,7 +13,7 @@ import {ConfigModel} from "@/model/base/config/config";
 import {ref} from "vue";
 
 const handleClick = () => {
-  pageModelRef.value.refreshTableData()
+  console.log(pageModelRef.value.getRowsData())
 }
 
 /**
@@ -73,7 +73,7 @@ const config: ConfigModel = {
       stripe: false,
       border: false,
     },
-    selection: false,
+    selection: true,
     els: [
       {
         label: "用户id",

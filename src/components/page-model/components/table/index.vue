@@ -9,7 +9,8 @@ import {TableModel} from "@/model/base/config/table/table";
  * 定义emit
  */
 const emit = defineEmits<{
-  (e: 'handleSelectionChange', rows: any[]): void
+  (e: 'handleSelectionChange', rows: any[]): void;
+  (e: 'handlePageDataChange', index: number, size: number): void
 }>()
 
 /**
@@ -28,11 +29,11 @@ const tableData = ref()
 /**
  * 当前页码
  */
-const currentPage = ref()
+const currentPage = ref(1)
 /**
  * 一页显示多少数据
  */
-const pageSize = ref()
+const pageSize = ref(20)
 
 /**
  * 操作栏初始化
@@ -47,6 +48,13 @@ function render({item}: any) {
 }
 
 /**
+ * 初始化
+ */
+const init = () => {
+  handleSizeChange(props.table.page.pageSize || 20)
+}
+
+/**
  * 多选
  */
 const handleSelectionChange = (rows: any[]) => {
@@ -58,13 +66,17 @@ const handleSelectionChange = (rows: any[]) => {
  */
 const handleSizeChange = (val: number) => {
   pageSize.value = val
+  emit("handlePageDataChange", currentPage.value, pageSize.value)
 }
 /**
  * 监听页码变化
  */
 const handleCurrentChange = (val: number) => {
   currentPage.value = val
+  emit("handlePageDataChange", currentPage.value, pageSize.value)
 }
+
+init()
 
 /**
  * 监视表格数据
@@ -99,9 +111,10 @@ watch(() => props.tableData, function () {
       </div>
       <div class="right">
         <el-pagination
+            v-if="table.page.enable"
             v-model:current-page="currentPage"
             v-model:page-size="pageSize"
-            :page-sizes="[100, 200, 300, 400]"
+            :page-sizes="[10, 20, 50, 100]"
             :total="400"
             layout="total, sizes, prev, pager, next, jumper"
             @size-change="handleSizeChange"

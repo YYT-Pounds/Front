@@ -55,8 +55,11 @@ const config: ConfigModel = {
     },
   ],
   table: {
+    page: {
+      enable: true
+    },
     operation: {
-      width: 60,
+      width: 80,
       els: [
         {
           type: "el-button",

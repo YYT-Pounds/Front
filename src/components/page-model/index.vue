@@ -15,17 +15,13 @@ import request from '@/apis/request'
 const props = defineProps<ConfigMainModel>()
 
 /**
- * 初始化数据
- */
-const init = () => {
-  refreshTableData()
-}
-
-/**
  * 获取表格数据
  */
 const tableData = ref()
 const rows = ref()
+const pageIndex = ref(1)
+const pageSize = ref(20)
+
 /**
  * 刷新表格
  */
@@ -33,7 +29,7 @@ const refreshTableData = async (params?: any) => {
   const result = await request({
     url: props.config.url,
     method: props.config.method,
-    params: {...params, ...props.config.otherParams}
+    params: {...params, ...props.config.otherParams, pageIndex: pageIndex.value, pageSize: pageSize.value}
   })
   tableData.value = result.data
 }
@@ -43,6 +39,15 @@ const refreshTableData = async (params?: any) => {
  */
 const handleSelectionChange = (value: any[]) => {
   rows.value = value
+}
+
+/**
+ * 监听页码变化与页码数据量大小变化
+ */
+const handlePageDataChange = (index: number, size: number) => {
+  pageIndex.value = index
+  pageSize.value = size
+  refreshTableData()
 }
 
 /**
@@ -59,8 +64,6 @@ const searchForm = ref(props.config.searchForm)
 const programForm = ref(props.config.programForm)
 const table = ref(props.config.table)
 
-init()
-
 /**
  * 暴露
  */
@@ -68,7 +71,6 @@ defineExpose({
   refreshTableData,
   getRowsData
 })
-
 </script>
 
 <template>
@@ -80,7 +82,8 @@ defineExpose({
       <ProgramForm :programForm="programForm"></ProgramForm>
     </div>
     <div class="table">
-      <Table :table="table" :tableData="tableData" @handleSelectionChange="handleSelectionChange"></Table>
+      <Table :table="table" :tableData="tableData" @handlePageDataChange="handlePageDataChange"
+             @handleSelectionChange="handleSelectionChange"></Table>
     </div>
   </div>
 </template>

@@ -7,6 +7,10 @@ interface TableBaseModel {
      */
     props?: TablePropsModel;
     /**
+     * 分页
+     */
+    page: TablePageModel;
+    /**
      * 是否开启多选
      */
     selection?: boolean;
@@ -29,6 +33,17 @@ interface TablePropsModel {
      * 是否开启斑马纹
      */
     stripe?: boolean;
+}
+
+interface TablePageModel {
+    /**
+     * 是否开启
+     */
+    enable: boolean;
+    /**
+     * 每页显示多少条数据
+     */
+    pageSize?: number;
 }
 
 export type TableModel = TableBaseModel

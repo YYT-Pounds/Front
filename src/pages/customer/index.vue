@@ -13,7 +13,7 @@ import {ConfigModel} from "@/model/base/config/config";
 import {ref} from "vue";
 
 const handleClick = () => {
-  console.log(pageModelRef.value.getRowsData())
+  pageModelRef.value.handleAdd()
 }
 
 /**
@@ -56,7 +56,8 @@ const config: ConfigModel = {
   ],
   table: {
     page: {
-      enable: true
+      enable: false,
+      pageSize: 999
     },
     operation: {
       width: 80,
@@ -102,6 +103,22 @@ const config: ConfigModel = {
         label: "备忘录",
         prop: "note",
         width: 120
+      }
+    ]
+  },
+  form: {
+    title: "新增/编辑",
+    labelWidth: "100px",
+    width: "500px",
+    els: [
+      {
+        label: "用户名",
+        type: "el-input",
+        prop: "name",
+        props: {
+          placeholder: "请输入用户名",
+          clearable: true
+        }
       }
     ]
   }

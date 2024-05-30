@@ -1,6 +1,7 @@
 import {SearchFormItemModel} from "@/model/base/config/search-form/search-form-item";
 import {ProgramFormItemModel} from "@/model/base/config/program-form/program-form-item";
 import {TableModel} from "@/model/base/config/table/table";
+import {FormModel} from "@/model/base/config/form/form";
 
 interface ConfigBaseModel {
     config: ConfigItemModel
@@ -31,6 +32,10 @@ interface ConfigItemModel {
      * 表格组件模型
      */
     table: TableModel;
+    /**
+     * 表单组件模型
+     */
+    form?: FormModel;
 }
 
 export type ConfigMainModel = ConfigBaseModel

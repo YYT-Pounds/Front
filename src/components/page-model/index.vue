@@ -9,6 +9,7 @@ import Form from './components/form/index.vue'
 import {ConfigMainModel} from "@/model/base/config/config";
 import {ref} from "vue";
 import request from '@/apis/request'
+import {ElMessage, ElMessageBox} from "element-plus";
 
 /**
  * 定义prop
@@ -62,7 +63,37 @@ const addTableData = async (params?: any) => {
     method: "post",
     params: {...params}
   })
-  refreshTableData(searchParams.value)
+  ElMessage.success("新增成功")
+  await refreshTableData(searchParams.value)
+}
+
+/**
+ * 更新数据
+ */
+const editTableData = async (params?: any) => {
+  await request({
+    url: props.config.url,
+    method: "put",
+    params: {...params}
+  })
+  ElMessage.success("编辑成功")
+  await refreshTableData(searchParams.value)
+}
+
+/**
+ * 删除数据
+ */
+const deleteTableData = async (params?: any) => {
+  await ElMessageBox.confirm("是否确认删除该条数据?", "删除", {type: "error"})
+  await request({
+    url: props.config.url,
+    method: "delete",
+    params: {
+      id: params.id
+    }
+  })
+  ElMessage.success("删除成功")
+  await refreshTableData(searchParams.value)
 }
 
 /**
@@ -96,13 +127,23 @@ const handleAdd = () => {
 }
 
 /**
+ * 内置事件 -- 编辑
+ */
+const handleEdit = (row: any) => {
+  formRef.value.show(row)
+}
+
+/**
  * 暴露
  */
 defineExpose({
   refreshTableData,
   getRowsData,
   handleAdd,
-  addTableData
+  handleEdit,
+  addTableData,
+  editTableData,
+  deleteTableData
 })
 </script>
 
@@ -119,7 +160,7 @@ defineExpose({
              @handleSelectionChange="handleSelectionChange"></Table>
     </div>
     <div class="form">
-      <Form ref="formRef" :form="form" @addTableData="addTableData"></Form>
+      <Form ref="formRef" :form="form" @addTableData="addTableData" @editTableData="editTableData"></Form>
     </div>
   </div>
 </template>

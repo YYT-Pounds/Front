@@ -12,8 +12,25 @@ import PageModel from '@/components/page-model/index.vue'
 import {ConfigModel} from "@/model/base/config/config";
 import {ref} from "vue";
 
-const handleClick = () => {
+/**
+ * 新增
+ */
+const handleAdd = () => {
   pageModelRef.value.handleAdd()
+}
+
+/**
+ * 编辑
+ */
+const handleEdit = (row: any) => {
+  pageModelRef.value.handleEdit(row)
+}
+
+/**
+ * 删除
+ */
+const handleDelete = (row: any) => {
+  pageModelRef.value.handleDelete(row)
 }
 
 /**
@@ -51,7 +68,7 @@ const config: ConfigModel = {
       props: {
         type: "primary",
       },
-      event: handleClick,
+      event: handleAdd,
     },
   ],
   table: {
@@ -60,12 +77,21 @@ const config: ConfigModel = {
       pageSize: 999
     },
     operation: {
-      width: 80,
+      width: 160,
       els: [
         {
           type: "el-button",
-          label: "测试",
-          event: handleClick,
+          label: "编辑",
+          event: handleEdit,
+          props: {
+            type: "primary",
+            link: true
+          }
+        },
+        {
+          type: "el-button",
+          label: "删除",
+          event: handleDelete,
           props: {
             type: "primary",
             link: true

@@ -17,6 +17,7 @@ const props = defineProps<{
  */
 const emit = defineEmits<{
   (e: 'addTableData', params: any): void;
+  (e: 'editTableData', params: any): void;
 }>()
 
 /**
@@ -43,10 +44,14 @@ function render({item}: any) {
  * 显示表单
  */
 const visible = ref(false)
-const show = () => {
+const show = (params: any) => {
   visible.value = true
+  if (params.id) {
+    formObj.value = params
+  }
 }
 const close = () => {
+  formObj.value = {}
   visible.value = false
 }
 
@@ -54,7 +59,11 @@ const close = () => {
  * 提交
  */
 const handleSubmit = () => {
-  emit('addTableData', formObj.value)
+  if (formObj.value.id) {
+    emit('editTableData', formObj.value)
+  } else {
+    emit('addTableData', formObj.value)
+  }
 }
 
 /**
@@ -67,7 +76,7 @@ defineExpose({
 
 <template>
   <div class="form">
-    <el-dialog v-model="visible" :title="props.form.title" :width="props.form.width">
+    <el-dialog v-model="visible" :before-close="close" :title="props.form.title" :width="props.form.width">
       <div class="container">
         <div class="form-content">
           <el-form v-model="formObj">

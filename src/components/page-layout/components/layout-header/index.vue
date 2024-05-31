@@ -23,9 +23,9 @@ const route = useRoute()
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  flex:0;
+  flex: 0;
 
-  .left{
+  .left {
     font-size: 22px;
     font-weight: bolder;
     color: #333333;

@@ -52,7 +52,7 @@ init()
     }
   }
 
-  .name{
+  .name {
     margin-left: 20px;
     font-size: 40px;
     font-weight: 500;

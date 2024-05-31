@@ -19,7 +19,7 @@ interface ConfigItemModel {
     /**
      * 自定义参数
      */
-    otherParams?: any;
+    otherParams?: Object;
     /**
      * 搜索组件模型
      */

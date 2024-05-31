@@ -6,7 +6,7 @@ interface TableItemBaseModel {
     /**
      * 值
      */
-    prop: any;
+    prop: string;
     /**
      * 宽度
      */

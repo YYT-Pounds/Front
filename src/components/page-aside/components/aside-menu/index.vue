@@ -32,7 +32,7 @@ const handleClick = (item: any) => {
 .aside-menu {
   .item {
     padding: 10px;
-    margin:5px;
+    margin: 5px;
     cursor: pointer;
 
     span {

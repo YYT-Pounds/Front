@@ -11,8 +11,8 @@
 </template>
 
 <style lang="scss" scoped>
-.layout-content{
-  flex:1;
+.layout-content {
+  flex: 1;
   border-radius: 20px;
   padding: 30px;
   background-color: white;

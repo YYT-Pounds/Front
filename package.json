@@ -1,7 +1,7 @@
 {
-  "name": "vite-vue-typescript-starter",
+  "name": "anqin",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,19 +9,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.12.13",
     "axios": "^1.7.2",
     "element-plus": "^2.7.3",
     "npm-check-updates": "^16.14.20",
     "pinia": "^2.1.7",
-    "sass": "^1.77.2",
+    "sass": "^1.77.4",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11",
+    "vite": "^5.2.12",
     "vue-tsc": "^2.0.19"
-  }
+  },
+  "main": "index.js",
+  "author": "pounds",
+  "license": "ISC",
+  "description": ""
 }

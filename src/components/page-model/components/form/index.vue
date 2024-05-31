@@ -3,7 +3,7 @@
  * 表单组件
  */
 import {FormModel} from "@/model/base/config/form/form";
-import {h, ref, resolveComponent} from "vue";
+import {h, ref, resolveComponent, defineProps, defineEmits} from "vue";
 
 /**
  * 定义props
@@ -16,27 +16,25 @@ const props = defineProps<{
  * 定义emit
  */
 const emit = defineEmits<{
-  (e: 'addTableData', params: any): void;
-  (e: 'editTableData', params: any): void;
+  (e: 'addTableData' | 'editTableData', params: any): void;
 }>()
 
 /**
  * 表单数据
  */
-const formObj: any = ref({})
+const formObj = ref<any>({})
 
 /**
  * 初始化
  */
 function render({item}: any) {
-  const type = resolveComponent(item.type)
-  return h(type, {
-    modelValue: formObj.value[item.prop],
-    onInput: (value: any) => {
-      formObj.value[item.prop] = value
-    },
-    placeholder: item.props.placeholder,
-    clearable: item.props.clearable
+  const {type, prop, props: {placeholder, clearable}} = item;
+  const Type = resolveComponent(type)
+  return h(Type, {
+    modelValue: formObj.value[prop],
+    onInput: (value: any) => formObj.value[item.prop] = value,
+    placeholder,
+    clearable
   })
 }
 
@@ -59,11 +57,7 @@ const close = () => {
  * 提交
  */
 const handleSubmit = () => {
-  if (formObj.value.id) {
-    emit('editTableData', formObj.value)
-  } else {
-    emit('addTableData', formObj.value)
-  }
+  emit(formObj.value.id ? "editTableData" : "addTableData", formObj.value)
 }
 
 /**

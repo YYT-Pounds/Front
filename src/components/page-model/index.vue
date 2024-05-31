@@ -7,7 +7,7 @@ import ProgramForm from './components/program-form/index.vue'
 import Table from './components/table/index.vue'
 import Form from './components/form/index.vue'
 import {ConfigMainModel} from "@/model/base/config/config";
-import {ref} from "vue";
+import {ref, defineProps} from "vue";
 import request from '@/apis/request'
 import {ElMessage, ElMessageBox} from "element-plus";
 
@@ -35,11 +35,11 @@ const formRef = ref()
 /**
  * 获取表格数据
  */
-const tableData = ref()
-const rows = ref()
-const pageIndex = ref(1)
-const pageSize = ref(20)
-const searchParams = ref()
+const tableData = ref<any[]>()
+const rows = ref<any[]>()
+const pageIndex = ref<number>(1)
+const pageSize = ref<number>(20)
+const searchParams = ref<any>()
 
 /**
  * 刷新表格

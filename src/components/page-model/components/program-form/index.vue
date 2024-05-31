@@ -2,7 +2,7 @@
 /**
  * 功能组件
  */
-import {h, resolveComponent} from 'vue'
+import {h, resolveComponent, defineProps} from 'vue'
 import {ProgramFormItemModel} from "@/model/base/config/program-form/program-form-item";
 
 /**

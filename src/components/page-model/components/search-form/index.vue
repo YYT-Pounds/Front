@@ -2,7 +2,7 @@
 /**
  * 搜索组件
  */
-import {h, ref, resolveComponent} from 'vue'
+import {h, ref, resolveComponent, defineEmits, defineProps} from 'vue'
 import {SearchFormItemModel} from "@/model/base/config/search-form/search-form-item";
 
 /**
@@ -28,14 +28,13 @@ let searchObj: any = ref({})
  * 初始化
  */
 function render({item}: any) {
-  const type = resolveComponent(item.type)
-  return h(type, {
-    modelValue: searchObj.value[item.prop],
-    onInput: (value: any) => {
-      searchObj.value[item.prop] = value
-    },
-    placeholder: item.props.placeholder,
-    clearable: item.props.clearable
+  const {type, prop, props: {placeholder, clearable}} = item
+  const Type = resolveComponent(type)
+  return h(Type, {
+    modelValue: searchObj.value[prop],
+    onInput: (value: any) => searchObj.value[prop] = value,
+    placeholder,
+    clearable
   })
 }
 

@@ -2,7 +2,7 @@
 /**
  * 表格组件
  */
-import {h, ref, resolveComponent, watch} from 'vue'
+import {h, ref, resolveComponent, watch, defineEmits, defineProps} from 'vue'
 import {TableModel} from "@/model/base/config/table/table";
 
 /**
@@ -33,7 +33,7 @@ const currentPage = ref(1)
 /**
  * 一页显示多少数据
  */
-const pageSize = ref(20)
+const pageSize = ref(props.table.page?.pageSize || 20)
 
 /**
  * 操作栏初始化
@@ -81,8 +81,8 @@ init()
 /**
  * 监视表格数据
  */
-watch(() => props.tableData, function () {
-  tableData.value = props.tableData
+watch(() => props.tableData, function (value) {
+  tableData.value = value || []
 })
 </script>
 

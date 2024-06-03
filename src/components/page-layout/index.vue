@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 主体
  */
+export default {
+  name: "page-layout"
+}
+</script>
+
+<script lang="tsx" setup>
 import LayoutHeader from './components/layout-header/index.vue'
 import LayoutContent from './components/layout-content/index.vue'
 </script>

@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 搜索组件
  */
+export default {
+  name: "search-form"
+}
+</script>
+
+<script lang="tsx" setup>
 import {h, ref, resolveComponent, defineEmits, defineProps} from 'vue'
 import {SearchFormItemModel} from "@/model/base/config/search-form/search-form-item";
 

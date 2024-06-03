@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 主体-头部
  */
+export default {
+  name: "layout-header"
+}
+</script>
+
+<script lang="tsx" setup>
 import {useRoute} from "vue-router";
 
 /**

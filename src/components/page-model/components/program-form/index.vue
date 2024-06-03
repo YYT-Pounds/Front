@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 功能组件
  */
+export default {
+  name: "program-form"
+}
+</script>
+
+<script lang="tsx" setup>
 import {h, resolveComponent, defineProps} from 'vue'
 import {ProgramFormItemModel} from "@/model/base/config/program-form/program-form-item";
 

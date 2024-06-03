@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 主题-表格
  */
+export default {
+  name: "page-model"
+}
+</script>
+
+<script lang="tsx" setup>
 import SearchForm from './components/search-form/index.vue'
 import ProgramForm from './components/program-form/index.vue'
 import Table from './components/table/index.vue'

@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 主题-表格
  */
+export default {
+  name: "layout-content"
+}
+</script>
+
+<script lang="tsx" setup>
 </script>
 
 <template>

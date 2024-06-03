@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 侧边菜单
  */
+export default {
+  name: "page-aside"
+}
+</script>
+
+<script lang="tsx" setup>
 import AsideLogo from "./components/aside-logo/index.vue"
 import AsideMenu from "./components/aside-menu/index.vue"
 </script>

@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 表格组件
  */
+export default {
+  name: "table"
+}
+</script>
+
+<script lang="tsx" setup>
 import {h, ref, resolveComponent, watch, defineEmits, defineProps} from 'vue'
 import {TableModel} from "@/model/base/config/table/table";
 

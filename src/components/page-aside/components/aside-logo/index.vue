@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 左侧菜单头部
  */
+export default {
+  name: "aside-logo"
+}
+</script>
+
+<script lang="tsx" setup>
 import {axiosConfig} from "@/apis/config";
 import {ref} from "vue";
 

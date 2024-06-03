@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 左侧菜单主体
  */
+export default {
+  name: "aside-menu"
+}
+</script>
+
+<script lang="tsx" setup>
 import {useRouter} from 'vue-router'
 
 /**

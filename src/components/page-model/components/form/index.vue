@@ -1,7 +1,13 @@
-<script lang="tsx" setup>
+<script lang="tsx">
 /**
  * 表单组件
  */
+export default {
+  name: "form"
+}
+</script>
+
+<script lang="tsx" setup>
 import {FormModel} from "@/model/base/config/form/form";
 import {h, ref, resolveComponent, defineProps, defineEmits} from "vue";
 

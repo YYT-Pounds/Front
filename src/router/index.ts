@@ -12,7 +12,26 @@ const routes = [
         name: "index",
         component: index,
         meta: {
-            title: "驾驶舱"
+            title: "驾驶舱",
+            icon:"Edit"
+        }
+    },
+    {
+        path: "/index",
+        name: "index",
+        component: index,
+        meta: {
+            title: "驾驶舱",
+            icon:"Edit"
+        }
+    },
+    {
+        path: "/index",
+        name: "index",
+        component: index,
+        meta: {
+            title: "驾驶舱",
+            icon:""
         }
     }
 ]

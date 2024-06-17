@@ -21,7 +21,7 @@ import AsideMenu from "./components/aside-menu/index.vue"
 
 <style lang="scss" scoped>
 .page-aside {
-  background-color: #333333;
+  background-color: #efeff5;
   flex: 0;
   flex-basis: 180px;
   padding: 0 10px;

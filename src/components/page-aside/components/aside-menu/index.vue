@@ -28,7 +28,10 @@ const handleClick = (item: any) => {
   <div class="aside-menu">
     <el-scrollbar>
       <div v-for="(item,index) of routerList" :key="index" class="item" @click="handleClick(item)">
-        <span>{{ item.meta.title }}</span>
+        <el-icon>
+          <component :is="item"></component>
+        </el-icon>
+        {{ item.meta.title }}
       </div>
     </el-scrollbar>
   </div>
@@ -36,15 +39,22 @@ const handleClick = (item: any) => {
 
 <style lang="scss" scoped>
 .aside-menu {
+
+  .item:hover{
+    background-color: darkblue;
+    color:white;
+  }
+
   .item {
     padding: 10px;
-    margin: 5px;
+    margin: 15px 5px;
     cursor: pointer;
-
-    span {
-      color: white;
-      font-size: 18px;
-    }
+    border-radius: 10px;
+    color: #333333;
+    font-size: 16px;
+    transition-delay: 100ms;
+    transition-duration: 500ms;
+    font-weight: bold;
   }
 }
 </style>

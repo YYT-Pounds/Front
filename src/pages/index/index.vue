@@ -103,7 +103,6 @@ const config: ConfigModel = {
       stripe: false,
       border: false,
     },
-    selection: true,
     els: [
       {
         label: "用户id",

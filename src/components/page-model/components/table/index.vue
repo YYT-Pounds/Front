@@ -113,7 +113,7 @@ watch(() => props.tableData, function (value) {
     </div>
     <div class="page">
       <div class="left">
-        <el-button class="left-btn" type="primary">清空选择</el-button>
+        <el-button v-if="props.table.selection" class="left-btn" type="primary">清空选择</el-button>
       </div>
       <div class="right">
         <el-pagination

@@ -4,15 +4,14 @@
  * @param interval  延迟
  */
 function debounce(fn: Function, interval: number) {
-    let flag = false
+    let timer: any = null
     return function (this: any, args: object) {
-        if (flag) {
-            return false
+        if (timer) {
+            clearTimeout(timer)
         }
-        flag = true
-        setTimeout(() => {
+        timer = setTimeout(() => {
             fn.call(this, args)
-            flag = false
+            timer = null
         }, interval)
     }
 }

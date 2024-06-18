@@ -20,6 +20,7 @@ const routerList: Array<any> = router.options.routes.slice(1, router.options.rou
  * 点击
  */
 const handleClick = (item: any) => {
+  console.log(item)
   router.push(item.path)
 }
 </script>
@@ -28,10 +29,14 @@ const handleClick = (item: any) => {
   <div class="aside-menu">
     <el-scrollbar>
       <div v-for="(item,index) of routerList" :key="index" class="item" @click="handleClick(item)">
-        <el-icon>
-          <component :is="item"></component>
-        </el-icon>
-        {{ item.meta.title }}
+        <div class="icon">
+          <el-icon size="large">
+            <component :is="item.meta.icon"></component>
+          </el-icon>
+        </div>
+        <div class="title">
+          {{ item.meta.title }}
+        </div>
       </div>
     </el-scrollbar>
   </div>
@@ -40,9 +45,9 @@ const handleClick = (item: any) => {
 <style lang="scss" scoped>
 .aside-menu {
 
-  .item:hover{
-    background-color: darkblue;
-    color:white;
+  .item:hover {
+    background-color: dodgerblue;
+    color: #efefef;
   }
 
   .item {
@@ -50,11 +55,23 @@ const handleClick = (item: any) => {
     margin: 15px 5px;
     cursor: pointer;
     border-radius: 10px;
-    color: #333333;
-    font-size: 16px;
     transition-delay: 100ms;
     transition-duration: 500ms;
     font-weight: bold;
+    display: flex;
+    color: #333333;
+    font-size: 16px;
+
+    .icon {
+      flex: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      flex: 1;
+      margin-left: 10px;
+    }
   }
 }
 </style>

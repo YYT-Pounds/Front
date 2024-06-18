@@ -6,7 +6,7 @@ import ElementPlus from "element-plus"
 import "element-plus/dist/index.css"
 import * as Icons from '@element-plus/icons-vue'
 
-import "./style/reset.scss"
+import "./plugins/reset.css"
 
 const app = createApp(App);
 app.use(ElementPlus);

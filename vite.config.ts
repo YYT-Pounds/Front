@@ -18,7 +18,7 @@ export default defineConfig({
                 replacement: path.resolve(projectRootDir, 'src')
             },
         ],
-        extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.vue']
+        extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.vue', 'scss']
     },
     server: {
         open: true,

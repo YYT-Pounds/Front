@@ -13,7 +13,7 @@ const routes = [
         component: index,
         meta: {
             title: "驾驶舱",
-            icon:"Edit"
+            icon: "Edit"
         }
     },
     {
@@ -22,7 +22,7 @@ const routes = [
         component: index,
         meta: {
             title: "驾驶舱",
-            icon:"Edit"
+            icon: "Edit"
         }
     },
     {
@@ -31,7 +31,7 @@ const routes = [
         component: index,
         meta: {
             title: "驾驶舱",
-            icon:""
+            icon: ""
         }
     }
 ]

@@ -156,7 +156,7 @@ defineExpose({
 <template>
   <div class="content-logout">
     <div class="search-form">
-      <slot name="search-form" :data="1">
+      <slot name="search-form" >
         <SearchForm ref="searchFormRef" :searchForm="searchForm" @refreshTableData="refreshTableData"></SearchForm>
       </slot>
     </div>

@@ -153,9 +153,6 @@ const config: ConfigModel = {
 <template>
   <div class="customer">
     <PageModel ref="pageModelRef" :config="config">
-      <template #search-form>
-        1
-      </template>
     </PageModel>
   </div>
 </template>

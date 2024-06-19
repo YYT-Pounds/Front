@@ -156,14 +156,20 @@ defineExpose({
 <template>
   <div class="content-logout">
     <div class="search-form">
-      <SearchForm ref="searchFormRef" :searchForm="searchForm" @refreshTableData="refreshTableData"></SearchForm>
+      <slot name="search-form" :data="1">
+        <SearchForm ref="searchFormRef" :searchForm="searchForm" @refreshTableData="refreshTableData"></SearchForm>
+      </slot>
     </div>
     <div class="program-form">
-      <ProgramForm ref="programFormRef" :programForm="programForm"></ProgramForm>
+      <slot name="program-form">
+        <ProgramForm ref="programFormRef" :programForm="programForm"></ProgramForm>
+      </slot>
     </div>
     <div class="table">
-      <Table ref="tableRef" :table="table" :tableData="tableData" @handlePageDataChange="handlePageDataChange"
-             @handleSelectionChange="handleSelectionChange"></Table>
+      <slot name="table">
+        <Table ref="tableRef" :table="table" :tableData="tableData" @handlePageDataChange="handlePageDataChange"
+               @handleSelectionChange="handleSelectionChange"></Table>
+      </slot>
     </div>
     <div class="form">
       <Form ref="formRef" :form="form" @addTableData="addTableData" @editTableData="editTableData"></Form>

@@ -25,8 +25,9 @@ const routes: RouteRecordRaw[] = [
         name: "index",
         component: index,
         meta: {
-            title: "安沁"
+            title: "驾驶舱"
         },
+        redirect: "/cockpit",
         children: routerList
     }
 ]

@@ -95,8 +95,8 @@ watch(() => props.tableData, function (value) {
 <template>
   <div class="table">
     <div class="container">
-      <el-table ref="tableRef" :border="props.table.props?.border" :data="tableData"
-                :stripe="props.table.props?.stripe" class="table-content"
+      <el-table ref="tableRef" :border="props.table.props?.border" :data="tableData" :stripe="props.table.props?.stripe"
+                class="table-content" empty-text="暂无数据"
                 height="100%" style="width:100%" @selection-change="handleSelectionChange">
         <el-table-column v-if="props.table.selection" type="selection" width="55"/>
         <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label"
@@ -141,12 +141,28 @@ watch(() => props.tableData, function (value) {
   height: 70vh;
 
   .container {
-    border: 2px solid #aaaaaa;
     flex: 1;
     position: relative;
 
+    :deep(.el-table__header) {
+      border: none;
+    }
+
+    :deep(.el-table th,.el-table td) {
+      color: #333333; /* 修改文字颜色 */
+      background-color: #f7f7fa;
+      text-align: center;
+      border: none;
+      border-right: 1px solid #999999;
+    }
+
+    :deep(.el-table th:last-child), :deep(.el-table td:last-child) {
+      border: none;
+    }
+
     :deep(.el-table) {
       position: absolute;
+      border: 1px solid #999999;
     }
   }
 

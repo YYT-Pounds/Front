@@ -6,7 +6,16 @@ import {RouteRecordRaw} from "vue-router";
  */
 const routerList: RouteRecordRaw[] = [
     {
-        path: "/index/cockpit",
+        path: "/cockpit",
+        name: "cockpit",
+        component: cockpit,
+        meta: {
+            title: "驾驶舱",
+            icon: "Edit"
+        }
+    },
+    {
+        path: "/cockpit",
         name: "cockpit",
         component: cockpit,
         meta: {

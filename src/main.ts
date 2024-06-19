@@ -1,12 +1,12 @@
 import {createApp} from "vue"
 
 import App from "./App.vue"
-import router from "./router"
+import router from "@/frame/router"
 import ElementPlus from "element-plus"
 import "element-plus/dist/index.css"
 import * as Icons from '@element-plus/icons-vue'
 
-import "./plugins/reset.css"
+import "@/frame/plugins/reset.css"
 
 const app = createApp(App);
 app.use(ElementPlus);

@@ -1,44 +1,19 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import cockpit from "@/pages/cockpit/index.vue";
+import {RouteRecordRaw} from "vue-router";
 
-import index from "../pages/index/index.vue";
-
-const routes = [
+/**
+ * 路由
+ */
+const routerList: RouteRecordRaw[] = [
     {
-        path: "/",
-        redirect: "/index"
-    },
-    {
-        path: "/index",
-        name: "index",
-        component: index,
-        meta: {
-            title: "驾驶舱",
-            icon: "Plus"
-        }
-    },
-    {
-        path: "/index",
-        name: "index",
-        component: index,
+        path: "/index/cockpit",
+        name: "cockpit",
+        component: cockpit,
         meta: {
             title: "驾驶舱",
             icon: "Edit"
         }
-    },
-    {
-        path: "/index",
-        name: "index",
-        component: index,
-        meta: {
-            title: "驾驶舱",
-            icon: ""
-        }
     }
 ]
 
-const router = createRouter({
-    history: createWebHashHistory(),
-    routes: routes
-})
-
-export default router;
+export default routerList

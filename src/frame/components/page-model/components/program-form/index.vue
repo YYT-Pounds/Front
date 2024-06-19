@@ -9,7 +9,7 @@ export default {
 
 <script lang="tsx" setup>
 import {h, resolveComponent, defineProps} from 'vue'
-import {ProgramFormItemModel} from "@/frame/model/base/config/program-form/program-form-item";
+import {ProgramFormItemBaseModel, ProgramFormItemModel} from "@/frame/model/base/config/program-form/program-form-item";
 
 /**
  * 定义props
@@ -22,11 +22,11 @@ const props = defineProps<{
  * 初始化
  */
 function render({item}: any) {
-  const type = resolveComponent(item.type)
-  return h(type, {
-        onClick: item.event,
-        link: item.props.link,
-        type: item.props.type
+  const {type, event, props} = item
+  const Type = resolveComponent(type)
+  return h(Type, {
+        onClick: event,
+        ...Object.assign({}, props)
       },
       [h('span', item.label)])
 }

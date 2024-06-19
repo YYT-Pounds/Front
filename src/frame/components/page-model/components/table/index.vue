@@ -45,10 +45,10 @@ const pageSize = ref(props.table.page?.pageSize || 20)
  * 操作栏初始化
  */
 function render({item}: any) {
-  const type = resolveComponent(item.type)
-  return h(type, {
-        link: item.props.link,
-        type: item.props.type
+  const {type, props} = item
+  const Type = resolveComponent(type)
+  return h(Type, {
+        ...Object.assign({}, props)
       },
       [h('span', item.label)])
 }

@@ -34,13 +34,12 @@ let searchObj: any = ref({})
  * 初始化
  */
 function render({item}: any) {
-  const {type, prop, props: {placeholder, clearable}} = item
+  const {type, prop, props} = item
   const Type = resolveComponent(type)
   return h(Type, {
     modelValue: searchObj.value[prop],
     onInput: (value: any) => searchObj.value[prop] = value,
-    placeholder,
-    clearable
+    ...Object.assign({}, props)
   })
 }
 
@@ -62,7 +61,8 @@ const handleSearch = () => {
 
 <template>
   <div class="search-form">
-    <render v-for="(item,index) of props.searchForm" :key="index" :item="item" class="form-item"></render>
+    <render v-for="(item,index) of props.searchForm" :key="index" :item="item" class="form-item"
+            v-bind="item.props"></render>
     <el-button class="form-button" @click="handleReset">重置</el-button>
     <el-button class="form-button" type="primary" @click="handleSearch">筛选</el-button>
   </div>

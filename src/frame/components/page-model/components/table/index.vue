@@ -10,7 +10,6 @@ export default {
 <script lang="tsx" setup>
 import {h, ref, resolveComponent, watch, defineEmits, defineProps} from 'vue'
 import {TableModel} from "@/frame/model/base/config/table/table";
-import useHeightRatio from "@/frame/utils/use-height-ratio.ts";
 
 /**
  * 定义emit
@@ -100,12 +99,19 @@ watch(() => props.tableData, function (value) {
                 class="table-content" empty-text="暂无数据"
                 height="100%" style="width:100%" @selection-change="handleSelectionChange">
         <el-table-column v-if="props.table.selection" type="selection" width="55"/>
-        <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label" :min-width="item.minWidth"
-                         :prop="item.prop" :width="item.width" class="table-item"></el-table-column>
+        <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label"
+                         :min-width="item.minWidth"
+                         :prop="item.prop" :width="item.width" class="table-item">
+          <template v-if="item.renderFn" #default>
+            <component :is="item.renderFn"/>
+          </template>
+        </el-table-column>
         <el-table-column v-if="props.table?.operation?.els" :width="props.table.operation?.width" label="操作栏">
           <template #default="scope">
-            <render v-for="(item,index) of props.table.operation?.els" :key="index" :item="item"
-                    @click="item.event(scope.row)"/>
+            <div v-for="(item,index) of props.table.operation?.els" :key="index">
+              <component :is="item.renderFn" v-if="item.renderFn"/>
+              <render v-else :item="item" @click="item.event(scope.row)"/>
+            </div>
           </template>
         </el-table-column>
       </el-table>

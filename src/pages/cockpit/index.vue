@@ -50,6 +50,9 @@ const config: ConfigModel = {
       props: {
         placeholder: "请输入名称",
         clearable: true,
+      },
+      renderFn(){
+        return <div>1111</div>
       }
     },
     {
@@ -68,7 +71,7 @@ const config: ConfigModel = {
       props: {
         type: "primary",
       },
-      event: handleAdd,
+      event: handleAdd
     },
   ],
   table: {
@@ -107,7 +110,10 @@ const config: ConfigModel = {
       {
         label: "用户id",
         prop: "id",
-        minWidth: 120
+        minWidth: 120,
+        renderFn(){
+          return <div>11111</div>
+        }
       },
       {
         label: "用户名",
@@ -143,6 +149,18 @@ const config: ConfigModel = {
         props: {
           placeholder: "请输入用户名",
           clearable: true
+        }
+      },
+      {
+        label: "用户名",
+        type: "el-input",
+        prop: "name",
+        props: {
+          placeholder: "请输入用户名",
+          clearable: true
+        },
+        renderFn(){
+          return <div>111</div>
         }
       }
     ]

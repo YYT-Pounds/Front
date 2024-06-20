@@ -26,6 +26,10 @@ interface TableOperationItemModel {
      * 绑定
      */
     props?: TableOperationItemPropsModel;
+    /**
+     * 自定义渲染函数
+     */
+    renderFn?: Function;
 }
 
 interface TableOperationItemPropsModel {

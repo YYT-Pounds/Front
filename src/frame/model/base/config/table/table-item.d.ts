@@ -19,6 +19,10 @@ interface TableItemBaseModel {
      * 绑定
      */
     props?: TableItemPropsModel;
+    /**
+     * 自定义渲染函数
+     */
+    renderFn?: Function;
 }
 
 interface TableItemPropsModel {

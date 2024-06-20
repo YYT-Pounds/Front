@@ -15,6 +15,10 @@ interface FormItemBaseModel {
      * 绑定
      */
     props?: FormItemPropsModel;
+    /**
+     * 自定义渲染函数
+     */
+    renderFn?: Function;
 }
 
 interface FormItemPropsModel {

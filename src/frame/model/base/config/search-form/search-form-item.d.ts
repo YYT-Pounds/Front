@@ -15,6 +15,10 @@ interface SearchFormItemBaseModel {
      * 绑定
      */
     props?: SearchFormItemPropsModel;
+    /**
+     * 自定义渲染函数
+     */
+    renderFn?: Function;
 }
 
 interface SearchFormItemPropsModel {

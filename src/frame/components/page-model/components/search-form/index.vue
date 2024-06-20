@@ -61,8 +61,10 @@ const handleSearch = () => {
 
 <template>
   <div class="search-form">
-    <render v-for="(item,index) of props.searchForm" :key="index" :item="item" class="form-item"
-            v-bind="item.props"></render>
+    <div v-for="(item,index) of props.searchForm" :key="index" class="form-item">
+      <component v-if="item.renderFn" :is="item.renderFn"/>
+      <render v-else :item="item"></render>
+    </div>
     <el-button class="form-button" @click="handleReset">重置</el-button>
     <el-button class="form-button" type="primary" @click="handleSearch">筛选</el-button>
   </div>

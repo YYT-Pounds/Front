@@ -34,7 +34,10 @@ function render({item}: any) {
 
 <template>
   <div class="program-form">
-    <render v-for="(item,index) of props.programForm" :key="index" :item="item" class="form-item"></render>
+    <div v-for="(item,index) of props.programForm" :key="index">
+      <component :is="item.renderFn" v-if="item.renderFn"/>
+      <render v-else :item="item" class="form-item"></render>
+    </div>
   </div>
 </template>
 

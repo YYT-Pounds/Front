@@ -10,6 +10,7 @@ export default {
 <script lang="tsx" setup>
 import {h, ref, resolveComponent, watch, defineEmits, defineProps} from 'vue'
 import {TableModel} from "@/frame/model/base/config/table/table";
+import useHeightRatio from "@/frame/utils/use-height-ratio.ts";
 
 /**
  * 定义emit
@@ -99,8 +100,8 @@ watch(() => props.tableData, function (value) {
                 class="table-content" empty-text="暂无数据"
                 height="100%" style="width:100%" @selection-change="handleSelectionChange">
         <el-table-column v-if="props.table.selection" type="selection" width="55"/>
-        <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label"
-                         :min-width="item.minWidth" :prop="item.prop" :width="item.width" class="table-item"/>
+        <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label" :min-width="item.minWidth"
+                         :prop="item.prop" :width="item.width" class="table-item"></el-table-column>
         <el-table-column v-if="props.table?.operation?.els" :width="props.table.operation?.width" label="操作栏">
           <template #default="scope">
             <render v-for="(item,index) of props.table.operation?.els" :key="index" :item="item"
@@ -136,7 +137,7 @@ watch(() => props.tableData, function (value) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 70vh;
+  height: 650rem;
 
   .container {
     flex: 1;
@@ -144,7 +145,7 @@ watch(() => props.tableData, function (value) {
 
     :deep(.el-table__body) {
       border: none;
-      border-top:1px solid #999999;
+      border-top: 1px solid #999999;
     }
 
     :deep(.el-table__header) {

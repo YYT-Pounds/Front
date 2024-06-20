@@ -2,6 +2,7 @@ import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 // @ts-ignore
 import path from 'path'
+import vueJsxPlugin from "@vitejs/plugin-vue-jsx";
 
 /**
  * 基础路径
@@ -10,7 +11,7 @@ import path from 'path'
 const projectRootDir = path.resolve(__dirname)
 
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [vue(), vueJsxPlugin()],
     resolve: {
         alias: [
             {

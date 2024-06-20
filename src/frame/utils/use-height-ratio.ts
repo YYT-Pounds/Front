@@ -33,7 +33,7 @@ function useHeightRatio(BASE_RATIO: number) {
     onUnmounted(() => {
         window.removeEventListener('resize', debounceResize)
     })
-    return ratio
+    return {ratio}
 }
 
 export default useHeightRatio

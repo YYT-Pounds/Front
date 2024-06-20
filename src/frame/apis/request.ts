@@ -4,7 +4,7 @@ import token from './token.ts'
 const request = axios.create({
     baseURL: "",
     headers: {
-        'Authorization': 'Bearer ' + token.get() || ""
+        'Authorization': 'Bearer ' + token.get()
     },
     timeout: 5000,
 })

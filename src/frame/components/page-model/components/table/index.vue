@@ -32,6 +32,7 @@ const props = defineProps<{
  */
 const tableRef = ref()
 const tableData = ref()
+
 /**
  * 当前页码
  */
@@ -108,9 +109,11 @@ watch(() => props.tableData, function (value) {
         </el-table-column>
         <el-table-column v-if="props.table?.operation?.els" :width="props.table.operation?.width" label="操作栏">
           <template #default="scope">
-            <div v-for="(item,index) of props.table.operation?.els" :key="index">
-              <component :is="item.renderFn" v-if="item.renderFn"/>
-              <render v-else :item="item" @click="item.event(scope.row)"/>
+            <div class="table-operation-list">
+              <div v-for="(item,index) of props.table.operation?.els" :key="index" class="table-operation-item">
+                <component :is="item.renderFn" v-if="item.renderFn"/>
+                <render v-else :item="item" @click="item.event(scope.row)"/>
+              </div>
             </div>
           </template>
         </el-table-column>
@@ -149,30 +152,34 @@ watch(() => props.tableData, function (value) {
     flex: 1;
     position: relative;
 
+    :deep(.el-table) {
+      position: absolute;
+      border: 1px solid #999999;
+    }
+
     :deep(.el-table__body) {
       border: none;
-      border-top: 1px solid #999999;
     }
 
     :deep(.el-table__header) {
       border: none;
     }
 
-    :deep(.el-table th,.el-table td) {
+    :deep(.el-table th), :deep(.el-table td) {
       color: #333333; /* 修改文字颜色 */
       background-color: #f7f7fa;
       text-align: center;
       border: none;
       border-right: 1px solid #999999;
+      border-bottom: 1px solid #999999;
     }
 
     :deep(.el-table th:last-child), :deep(.el-table td:last-child) {
-      border: none;
+      border-right: none;
     }
 
-    :deep(.el-table) {
-      position: absolute;
-      border: 1px solid #999999;
+    .table-operation-list {
+      display: flex;
     }
   }
 

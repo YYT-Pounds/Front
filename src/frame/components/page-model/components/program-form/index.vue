@@ -9,7 +9,7 @@ export default {
 
 <script lang="tsx" setup>
 import {h, resolveComponent, defineProps} from 'vue'
-import {ProgramFormItemBaseModel, ProgramFormItemModel} from "@/frame/model/base/config/program-form/program-form-item";
+import {ProgramFormItemModel} from "@/frame/model/base/config/program-form/program-form-item";
 
 /**
  * 定义props

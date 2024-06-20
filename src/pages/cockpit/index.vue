@@ -51,7 +51,7 @@ const config: ConfigModel = {
         placeholder: "请输入名称",
         clearable: true,
       },
-      renderFn(){
+      renderFn() {
         return <div>1111</div>
       }
     },
@@ -111,7 +111,7 @@ const config: ConfigModel = {
         label: "用户id",
         prop: "id",
         minWidth: 120,
-        renderFn(){
+        renderFn() {
           return <div>11111</div>
         }
       },
@@ -159,7 +159,7 @@ const config: ConfigModel = {
           placeholder: "请输入用户名",
           clearable: true
         },
-        renderFn(){
+        renderFn() {
           return <div>111</div>
         }
       }

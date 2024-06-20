@@ -151,11 +151,4 @@ label {
   border-radius: 2rem;
   margin-bottom: 2rem;
 }
-
-.text {
-  display: flex;
-  font-size: 0.7rem;
-}
-
-
 </style>

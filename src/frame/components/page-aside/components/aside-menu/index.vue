@@ -8,26 +8,44 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {useRouter} from 'vue-router'
+import {useRoute, useRouter} from 'vue-router'
+import {ref} from "vue";
+
+/**
+ * 定义路由
+ */
+const route = useRoute()
+const router = useRouter()
 
 /**
  * 初始化数据
  */
-const router = useRouter()
-const routerList: any[] | any = router.options.routes.find((item: any) => item.name === "index")?.children
+const routerList: any[] | any = ref(router.options.routes.find((item: any) => item.name === "index")?.children)
+
+/**
+ * 遍历获取当前活动路由
+ */
+const handleFindActiveRoute = () => {
+  routerList.value.forEach((item: any) => {
+    item.active = route.path === item.path;
+  })
+}
+handleFindActiveRoute()
 
 /**
  * 点击
  */
 const handleClick = (item: any) => {
   router.push(item.path)
+  handleFindActiveRoute()
 }
 </script>
 
 <template>
   <div class="aside-menu">
     <el-scrollbar>
-      <div v-for="(item,index) of routerList" :key="index" class="item" @click="handleClick(item)">
+      <div v-for="(item,index) of routerList" :key="index" :class='{"active-item" : item.active}' class="item"
+           @click="handleClick(item)">
         <div class="icon">
           <el-icon size="large">
             <component :is="item.meta.icon"></component>
@@ -71,6 +89,11 @@ const handleClick = (item: any) => {
       flex: 1;
       margin-left: 10px;
     }
+  }
+
+  .active-item {
+    background-color: dodgerblue;
+    color: #efefef;
   }
 }
 </style>

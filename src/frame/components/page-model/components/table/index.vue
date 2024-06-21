@@ -58,7 +58,7 @@ function render({item}: any) {
  * 初始化
  */
 const init = () => {
-  handleSizeChange(props.table.page.pageSize || 20)
+  handleSizeChange(props.table.page?.pageSize || 20)
 }
 
 /**
@@ -125,7 +125,7 @@ watch(() => props.tableData, function (value) {
       </div>
       <div class="right">
         <el-pagination
-            v-if="table.page.enable"
+            v-if="table?.page?.enable == null ? true : table?.page?.enable"
             v-model:current-page="currentPage"
             v-model:page-size="pageSize"
             :page-sizes="[10, 20, 50, 100]"

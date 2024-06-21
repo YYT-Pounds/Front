@@ -76,11 +76,11 @@ defineExpose({
 
 <template>
   <div class="form">
-    <el-dialog v-model="visible" :before-close="close" :title="props.form.title" :width="props.form.width">
+    <el-dialog v-model="visible" :before-close="close" :title="props?.form?.title" :width="props?.form?.width">
       <div class="container">
         <div class="form-content">
           <el-form v-model="formObj">
-            <el-form-item v-for="(item, index) in props.form.els" :key="index" :label="item.label"
+            <el-form-item v-for="(item, index) in props?.form?.els" :key="index" :label="item.label"
                           :label-width="props.form.labelWidth">
               <component :is="item.renderFn" v-if="item.renderFn"/>
               <render v-else :item="item"></render>

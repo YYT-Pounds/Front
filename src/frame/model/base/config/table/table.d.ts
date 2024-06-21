@@ -9,7 +9,7 @@ interface TableBaseModel {
     /**
      * 分页
      */
-    page: TablePageModel;
+    page?: TablePageModel;
     /**
      * 是否开启多选
      */
@@ -39,7 +39,7 @@ interface TablePageModel {
     /**
      * 是否开启
      */
-    enable: boolean;
+    enable?: boolean;
     /**
      * 每页显示多少条数据
      */

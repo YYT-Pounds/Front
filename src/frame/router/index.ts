@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/login",
         name: "login",
-        component: login,
+        component: () => import("@/frame/pages/login/index.vue"),
         meta: {
             title: "登录"
         }
@@ -23,9 +23,9 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/index",
         name: "index",
-        component: index,
+        component: () => import("@/frame/pages/index/index.vue"),
         meta: {
-            title: "驾驶舱"
+            title: "首页"
         },
         redirect: "/cockpit",
         children: routerList

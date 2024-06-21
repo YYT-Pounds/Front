@@ -35,8 +35,8 @@ handleFindActiveRoute()
 /**
  * 点击
  */
-const handleClick = (item: any) => {
-  router.push(item.path)
+const handleClick = async (item: any) => {
+  await router.push(item.path)
   handleFindActiveRoute()
 }
 </script>

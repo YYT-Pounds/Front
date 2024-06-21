@@ -1,4 +1,3 @@
-import cockpit from "@/pages/cockpit/index.vue";
 import {RouteRecordRaw} from "vue-router";
 
 /**
@@ -8,21 +7,30 @@ const routerList: RouteRecordRaw[] = [
     {
         path: "/cockpit",
         name: "cockpit",
-        component: cockpit,
+        component: () => import("@/pages/cockpit/index.vue"),
         meta: {
             title: "驾驶舱",
             icon: "Edit"
         }
     },
     {
-        path: "/cockpit",
-        name: "cockpit",
-        component: cockpit,
+        path: "/staff",
+        name: "staff",
+        component: () => import("@/pages/staff/index.vue"),
         meta: {
-            title: "驾驶舱",
+            title: "人员管理",
             icon: "Edit"
         }
-    }
+    },
+    {
+        path: "/customer",
+        name: "customer",
+        component: () => import("@/pages/customer/index.vue"),
+        meta: {
+            title: "客户管理",
+            icon: "Edit"
+        }
+    },
 ]
 
 export default routerList

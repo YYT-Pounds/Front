@@ -1,45 +1,24 @@
 <script lang="tsx">
 /**
- * 驾驶舱
+ * 编码规则
  */
 export default {
-  name: "staff"
+  name: "code-rule"
 }
 </script>
 
 <script lang="tsx" setup>
 import PageModel from '@/frame/components/page-model/index.vue'
-import {ConfigModel} from "@/frame/model/base/config/config";
 import {ref} from "vue";
-
-/**
- * 新增
- */
-const handleAdd = () => {
-  pageModelRef.value.handleAdd()
-}
-
-/**
- * 编辑
- */
-const handleEdit = (row: any) => {
-  pageModelRef.value.handleEdit(row)
-}
-
-/**
- * 删除
- */
-const handleDelete = (row: any) => {
-  pageModelRef.value.handleDelete(row)
-}
+import definePageModel from "@/frame/components/page-model/constructor.ts";
 
 /**
  * 页面模型
  */
 const pageModelRef = ref()
-const config: ConfigModel = {
+const config = definePageModel({
   url: "http://118.178.254.102:1254/peaceful/admin/select",
-  method: "get",
+  method: "GET",
   otherParams: {
     id: 1111
   },
@@ -70,8 +49,7 @@ const config: ConfigModel = {
       type: 'el-button',
       props: {
         type: "primary",
-      },
-      event: handleAdd
+      }
     },
   ],
   table: {
@@ -85,7 +63,6 @@ const config: ConfigModel = {
         {
           type: "el-button",
           label: "编辑",
-          event: handleEdit,
           props: {
             type: "primary",
             link: true
@@ -94,7 +71,6 @@ const config: ConfigModel = {
         {
           type: "el-button",
           label: "删除",
-          event: handleDelete,
           props: {
             type: "primary",
             link: true
@@ -117,7 +93,7 @@ const config: ConfigModel = {
       },
       {
         label: "用户名",
-        prop: "name",
+        prop: "staffName",
         minWidth: 120
       },
       {
@@ -165,7 +141,7 @@ const config: ConfigModel = {
       }
     ]
   }
-}
+})
 </script>
 
 <template>

@@ -31,6 +31,15 @@ const routerList: RouteRecordRaw[] = [
             icon: "Edit"
         }
     },
+    {
+        path: "/code-rule",
+        name: "code-rule",
+        component: () => import("@/pages/code-rule/index.vue"),
+        meta: {
+            title: "编码规则",
+            icon: "Edit"
+        }
+    }
 ]
 
 export default routerList

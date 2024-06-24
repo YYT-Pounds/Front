@@ -9,8 +9,8 @@ export default {
 
 <script lang="tsx" setup>
 import PageModel from '@/frame/components/page-model/index.vue'
-import {ConfigModel} from "@/frame/model/base/config/config";
 import {ref} from "vue";
+import definePageModel from "@/frame/components/page-model/constructor.ts";
 
 /**
  * 新增
@@ -37,7 +37,7 @@ const handleDelete = (row: any) => {
  * 页面模型
  */
 const pageModelRef = ref()
-const config: ConfigModel = {
+const config = definePageModel({
   url: "http://118.178.254.102:1254/peaceful/admin/select",
   method: "get",
   otherParams: {
@@ -165,7 +165,7 @@ const config: ConfigModel = {
       }
     ]
   }
-}
+})
 </script>
 
 <template>

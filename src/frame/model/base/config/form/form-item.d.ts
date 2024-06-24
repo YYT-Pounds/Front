@@ -1,4 +1,4 @@
-interface FormItemBaseModel {
+interface FormItemBaseModel<T> {
     /**
      * 名称
      */

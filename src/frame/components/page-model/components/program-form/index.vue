@@ -28,7 +28,7 @@ function render({item}: any) {
         onClick: event,
         ...Object.assign({}, props)
       },
-      [h('span', item.label)])
+      () => item.label)
 }
 </script>
 

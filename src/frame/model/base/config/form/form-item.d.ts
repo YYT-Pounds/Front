@@ -1,4 +1,4 @@
-interface FormItemBaseModel<T> {
+interface FormItemBaseModel {
     /**
      * 名称
      */
@@ -30,6 +30,10 @@ interface FormItemPropsModel {
      * 是否可清空
      */
     clearable?: boolean;
+    /**
+     * 是否禁用
+     */
+    disabled?: boolean;
 }
 
 export type FormItemModel = FormItemBaseModel

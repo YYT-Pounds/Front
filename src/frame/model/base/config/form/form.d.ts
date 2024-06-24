@@ -1,4 +1,4 @@
-import {FormItemModel} from "@/model/base/config/form/form-item";
+import {FormItemModel} from "@/frame/model/base/config/form/form-item";
 
 interface FormBaseModel {
     /**

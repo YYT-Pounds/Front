@@ -30,6 +30,10 @@ interface SearchFormItemPropsModel {
      * 是否可清空
      */
     clearable?: boolean;
+    /**
+     * 是否禁用
+     */
+    disabled?: boolean;
 }
 
 export type SearchFormItemModel = SearchFormItemBaseModel

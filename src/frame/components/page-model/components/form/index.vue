@@ -34,13 +34,12 @@ const formObj = ref<any>({})
  * 初始化
  */
 function render({item}: any) {
-  const {type, prop, props: {placeholder, clearable}} = item;
+  const {type, prop} = item;
   const Type = resolveComponent(type)
   return h(Type, {
     modelValue: formObj.value[prop],
     onInput: (value: any) => formObj.value[item.prop] = value,
-    placeholder,
-    clearable
+    ...Object.assign({}, props)
   })
 }
 

@@ -14,15 +14,6 @@ const routerList: RouteRecordRaw[] = [
         }
     },
     {
-        path: "/staff",
-        name: "staff",
-        component: () => import("@/pages/staff/index.vue"),
-        meta: {
-            title: "人员管理",
-            icon: "Edit"
-        }
-    },
-    {
         path: "/customer",
         name: "customer",
         component: () => import("@/pages/customer/index.vue"),

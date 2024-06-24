@@ -19,6 +19,10 @@ interface FormItemBaseModel {
      * 自定义渲染函数
      */
     renderFn?: Function;
+    /**
+     * 是否显示
+     */
+    hide?: Function | boolean;
 }
 
 interface FormItemPropsModel {

@@ -61,7 +61,7 @@ const handleSearch = () => {
 
 <template>
   <div class="search-form">
-    <div v-for="(item,index) of props.searchForm" :key="index" class="form-item">
+    <div v-for="(item,index) of props.searchForm" :key="index" class="form-item" v-show="!item.hide">
       <component :is="item.renderFn" v-if="item.renderFn"/>
       <render v-else :item="item"></render>
     </div>

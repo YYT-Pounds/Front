@@ -149,7 +149,8 @@ const config = definePageModel({
         props: {
           placeholder: "请输入用户名",
           clearable: true
-        }
+        },
+        hide: true
       },
       {
         label: "用户名",
@@ -161,7 +162,7 @@ const config = definePageModel({
         },
         renderFn() {
           return <div>111</div>
-        }
+        },
       }
     ]
   }

@@ -129,15 +129,16 @@ const getRowsData = () => {
 /**
  * 内置事件 -- 新增
  */
-const handleAdd = () => {
-  formRef.value.show()
+const handleAdd = async () => {
+  const bindData = await form.value.bindData(formRef.value.formObj)
+  formRef.value.show({bindData})
 }
 
 /**
  * 内置事件 -- 编辑
  */
 const handleEdit = (row: any) => {
-  formRef.value.show(row)
+  formRef.value.show({row})
 }
 
 /**

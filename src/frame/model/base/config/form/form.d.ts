@@ -14,6 +14,10 @@ interface FormBaseModel {
      */
     title: string;
     /**
+     * 赋值函数
+     */
+    bindData?: Function;
+    /**
      * 子项
      */
     els: FormItemModel[];

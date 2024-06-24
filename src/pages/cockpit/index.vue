@@ -141,6 +141,10 @@ const config = definePageModel({
     title: "新增/编辑",
     labelWidth: "100px",
     width: "500px",
+    bindData(formData: any) {
+      formData.name = 11
+      return formData
+    },
     els: [
       {
         label: "用户名",
@@ -149,8 +153,7 @@ const config = definePageModel({
         props: {
           placeholder: "请输入用户名",
           clearable: true
-        },
-        hide: true
+        }
       },
       {
         label: "用户名",
@@ -159,10 +162,7 @@ const config = definePageModel({
         props: {
           placeholder: "请输入用户名",
           clearable: true
-        },
-        renderFn() {
-          return <div>111</div>
-        },
+        }
       }
     ]
   }

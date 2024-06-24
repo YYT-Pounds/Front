@@ -37,7 +37,7 @@ interface SearchFormItemPropsModel {
     /**
      * 是否禁用
      */
-    disabled?: boolean;
+    disabled?: Function | boolean;
 }
 
 export type SearchFormItemModel = SearchFormItemBaseModel

@@ -30,6 +30,10 @@ interface TableOperationItemModel {
      * 自定义渲染函数
      */
     renderFn?: Function;
+    /**
+     * 是否隐藏
+     */
+    hide: Function | boolean;
 }
 
 interface TableOperationItemPropsModel {
@@ -45,6 +49,10 @@ interface TableOperationItemPropsModel {
      * 尺寸
      */
     size?: string;
+    /**
+     * 是否关闭
+     */
+    disabled: Function | boolean;
 }
 
 export type TableOperationModel = TableOperationBaseModel

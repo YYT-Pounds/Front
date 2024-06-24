@@ -110,7 +110,8 @@ watch(() => props.tableData, function (value) {
         <el-table-column v-if="props.table?.operation?.els" :width="props.table.operation?.width" label="操作栏">
           <template #default="scope">
             <div class="table-operation-list">
-              <div v-for="(item,index) of props.table.operation?.els" :key="index" class="table-operation-item">
+              <div v-for="(item,index) of props.table.operation?.els" v-show="!item.hide" :key="index"
+                   class="table-operation-item">
                 <component :is="item.renderFn" v-if="item.renderFn"/>
                 <render v-else :item="item" @click="item.event(scope.row)"/>
               </div>

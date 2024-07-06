@@ -4,6 +4,14 @@ interface TableOperationBaseModel {
      */
     width?: number;
     /**
+     * 绑定数据前操作
+     */
+    bindData?: Function;
+    /**
+     * 提交数据前操作
+     */
+    beforeSubmit?: Function;
+    /**
      * 操作栏子项
      */
     els: TableOperationItemModel[];

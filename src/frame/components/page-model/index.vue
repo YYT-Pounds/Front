@@ -129,9 +129,8 @@ const getRowsData = () => {
 /**
  * 内置事件 -- 新增
  */
-const handleAdd = async () => {
-  const bindData = await form.value.bindData(formRef.value.formObj)
-  formRef.value.show({bindData})
+const handleAdd = () => {
+  formRef.value.show({})
 }
 
 /**

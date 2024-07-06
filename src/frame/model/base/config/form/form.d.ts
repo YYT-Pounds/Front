@@ -14,9 +14,13 @@ interface FormBaseModel {
      */
     title: string;
     /**
-     * 赋值函数
+     * 绑定数据前操作
      */
     bindData?: Function;
+    /**
+     * 提交数据前操作
+     */
+    beforeSubmit?: Function;
     /**
      * 子项
      */

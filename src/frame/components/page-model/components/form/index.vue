@@ -48,7 +48,6 @@ function render({item}: any) {
  */
 const visible = ref(false)
 const show = (params: any) => {
-  formObj.value = params?.bindData || {}
   visible.value = true
   if (params?.id) {
     formObj.value = params?.row
@@ -70,8 +69,7 @@ const handleSubmit = () => {
  * 暴露
  */
 defineExpose({
-  show,
-  formObj
+  show
 })
 </script>
 

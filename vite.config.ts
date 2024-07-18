@@ -25,11 +25,16 @@ export default defineConfig({
         open: true,
         port: 80,
         proxy: {
-            'peaceful': {
-                target: 'http://118.178.254.102:1254',
+            '/development': {
+                target: 'http://127.0.0.1:8610',
                 changeOrigin: true,
-                rewrite: path => path.replace(/^\/peaceful/, '')
-            }
+                rewrite: path => path.replace(/^\/development/, '')
+            },
+            '/official': {
+                target: 'http://118.178.254.102:8610',
+                changeOrigin: true,
+                rewrite: path => path.replace(/^\/official/, '')
+            },
         }
     }
 })

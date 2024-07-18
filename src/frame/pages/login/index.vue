@@ -10,6 +10,7 @@ export default {
 <script lang="tsx" setup>
 import {ref} from "vue";
 import {useRouter} from "vue-router";
+import request from "@/frame/apis/request.ts";
 
 /**
  * 定义router
@@ -22,8 +23,9 @@ const router = useRouter()
 const account = ref()
 const password = ref()
 const handleClick = () => {
+  request.post("/api/test")
   //登录
-  router.push({name:"index"})
+  // router.push({name:"index"})
 }
 </script>
 

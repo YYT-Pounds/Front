@@ -1,10 +1,8 @@
 <script lang="tsx">
-import {defineComponent} from "vue";
-
 /**
  * 搜索组件
  */
-export default defineComponent extend({
+export default({
 
 })
 </script>

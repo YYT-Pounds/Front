@@ -34,7 +34,7 @@ export default defineConfig({
                 target: 'http://118.178.254.102:8610',
                 changeOrigin: true,
                 rewrite: path => path.replace(/^\/official/, '')
-            },
+            }
         }
     }
 })

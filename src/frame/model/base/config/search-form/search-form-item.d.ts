@@ -1,8 +1,16 @@
+/**
+ * search组件列表
+ */
+type type = "el-input";
+
+/**
+ * search组件
+ */
 interface SearchFormItemBaseModel {
     /**
      * 组件名称
      */
-    type: string;
+    type: type;
     /**
      * 名称
      */
@@ -33,7 +41,7 @@ interface SearchFormItemPropsModel {
     /**
      * 是否可清空
      */
-    clearable?: boolean;
+    clearable?: "true" | "false";
     /**
      * 是否禁用
      */

@@ -10,6 +10,15 @@ import vueJsxPlugin from "@vitejs/plugin-vue-jsx";
 // @ts-ignore
 const projectRootDir = path.resolve(__dirname)
 
+/**
+ * 本地地址
+ */
+// const baseUrl = "http://localhost:8610"
+/**
+ * 远程地址
+ */
+const baseUrl = "https://yuyiting.work"
+
 export default defineConfig({
     plugins: [vue(), vueJsxPlugin()],
     resolve: {
@@ -26,14 +35,14 @@ export default defineConfig({
         port: 80,
         proxy: {
             '/development': {
-                target: 'http://127.0.0.1:8610',
+                target: baseUrl,
                 changeOrigin: true,
                 rewrite: path => path.replace(/^\/development/, '')
             },
-            '/official': {
-                target: 'http://118.178.254.102:8610',
+            '/production': {
+                target: baseUrl,
                 changeOrigin: true,
-                rewrite: path => path.replace(/^\/official/, '')
+                rewrite: path => path.replace(/^\/production/, '')
             }
         }
     }

@@ -1,9 +1,9 @@
-import SearchFormType from "./type";
+import SearchFormType from "./type.d.ts";
 
 /**
  * 搜索框
  */
-class SearchFormManager<Model = AnyObject> {
+class SearchFormManager<Model> {
     /**
      * 组件名称
      */
@@ -15,7 +15,7 @@ class SearchFormManager<Model = AnyObject> {
     /**
      * 值
      */
-    prop: Model;
+    prop: keyof Model;
     /**
      * 绑定
      */

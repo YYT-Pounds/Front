@@ -8,8 +8,8 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import request from '@/frame/apis/request.ts'
 import {ref} from "vue";
+import axios from "axios";
 
 /**
  * 获取初始数据
@@ -23,7 +23,7 @@ const init = () => {
  */
 const config = ref()
 const getData = async () => {
-  config.value = await request.get('/public/config/base.json')
+  config.value = await axios.get('/public/config/base.json')
 }
 
 init()

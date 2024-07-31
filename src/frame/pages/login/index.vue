@@ -10,21 +10,11 @@ export default {
 <script lang="tsx" setup>
 import {ref} from "vue";
 import {useRouter} from "vue-router";
-import {defineSearchForm} from "@/frame/components/search-form/constructor.ts";
-
-interface test {
-  account: string,
-  password: string
-}
 
 /**
  * 定义router
  */
 const router = useRouter()
-const searchForm = defineSearchForm<test>({
-  type: "el-input",
-  prop: "account"
-})
 
 /**
  * 账号、密码

@@ -1,4 +1,4 @@
-import SearchFormType from "./type.d.ts";
+import SearchFormType from "./type.ts";
 
 /**
  * 搜索框
@@ -22,14 +22,23 @@ class SearchFormManager<Model> {
     props?: SearchFormType.props;
 
     /**
+     * 构造函数
+     */
+    constructor(type: SearchFormType.type, prop: keyof Model) {
+        this.type = type;
+        this.prop = prop;
+    }
+
+
+    /**
      * 自定义渲染函数
      */
-    renderFn(data: Model): void;
+    renderFn?(data: Model): void;
 
     /**
      * 是否隐藏
      */
-    hide(data: Model): boolean;
+    hide?(data: Model): boolean;
 }
 
 /**

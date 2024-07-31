@@ -10,6 +10,7 @@ export default {
 <script lang="tsx" setup>
 import {ref} from "vue";
 import {useRouter} from "vue-router";
+import Code from "@/frame/components/code/index.vue"
 
 /**
  * 定义router
@@ -47,6 +48,7 @@ const handleClick = () => {
                    required type="password">
             <label for="login_password"></label>
           </div>
+          <Code/>
           <button class="login-btn" @click="handleClick">登录</button>
         </div>
       </form>

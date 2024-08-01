@@ -11,11 +11,30 @@ export default {
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import Code from "@/frame/components/code/index.vue"
+import {defineSearchForm} from "@/frame/components/search-form/constructor.ts";
 
 /**
  * 定义router
  */
 const router = useRouter()
+
+interface model {
+  account: string
+  password: string
+}
+
+const searchForm = defineSearchForm<model>({
+  els: [
+    {
+      type: "el-input",
+      prop: "account",
+      props: {
+        placeholder: "账号",
+        clearable: true
+      }
+    }
+  ]
+})
 
 /**
  * 账号、密码

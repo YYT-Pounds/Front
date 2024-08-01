@@ -2,7 +2,7 @@
  * 布尔
  */
 declare namespace BaseType {
-    type bool = "true" | "false"
+    type bool = true | false
 }
 
 /**

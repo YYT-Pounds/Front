@@ -12,25 +12,21 @@ namespace SearchFormType {
      * 绑定
      */
     type props = SearchFormTypeProps
-}
 
-interface SearchFormTypeProps {
-    /**
-     * 提示
-     */
-    placeholder?: string;
-    /**
-     * 是否可清空
-     */
-    clearable?: BaseType.bool
-    /**
-     * 是否禁用
-     */
-    disabled?: BaseType.bool | Function
+    interface SearchFormTypeProps {
+        /**
+         * 提示
+         */
+        placeholder?: string;
+        /**
+         * 是否可清空
+         */
+        clearable?: BaseType.bool
+        /**
+         * 是否禁用
+         */
+        disabled?: BaseType.bool | Function
+    }
 }
-
-/**
- * 布尔
- */
 
 export default SearchFormType;

@@ -1,9 +1,23 @@
-import SearchFormType from "./type.ts";
+import SearchFormType from "./type.d.ts";
 
 /**
  * 搜索框
  */
 class SearchFormManager<Model> {
+    els: SearchFormItemManager<Model>[]
+
+    /**
+     * 构造函数
+     */
+    constructor(els: SearchFormItemManager<Model>[]) {
+        this.els = els;
+    }
+}
+
+/**
+ * 搜索框 - 子组件
+ */
+class SearchFormItemManager<Model> {
     /**
      * 组件名称
      */
@@ -28,7 +42,6 @@ class SearchFormManager<Model> {
         this.type = type;
         this.prop = prop;
     }
-
 
     /**
      * 自定义渲染函数

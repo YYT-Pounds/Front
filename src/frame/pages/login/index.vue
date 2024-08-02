@@ -11,7 +11,7 @@ export default {
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import VerificationCode from "@/frame/components/business/verification-code/index.vue"
-import {defineSearchForm} from "@/frame/components/base/search-form/constructor.ts";
+import {defineSearchForm, SearchForm} from "@/frame/components/base/search-form/constructor.ts";
 
 /**
  * 定义router
@@ -51,12 +51,19 @@ const handleClick = () => {
   // router.push({path: "/customer"})
   // processRequest.get("/api/test")
 }
+
+const SearchFormRef = ref()
+const testData = (val: any) => {
+  console.log(val)
+  console.log(SearchFormRef.value.getSearchFormData())
+}
 </script>
 
 <template>
   <div class="login">
     <div class="container">
       <form class="login-form" onsubmit="return false">
+        <SearchForm ref="SearchFormRef" :searchFormModel="searchForm" @refreshTableData="testData"/>
         <div class="head" style="text-align: center">
           <p>安沁后台管理系统</p>
         </div>
@@ -73,7 +80,7 @@ const handleClick = () => {
                    required type="password">
             <label for="login_password"></label>
           </div>
-          <VerificationCode ref="verificationCodeRef" />
+          <VerificationCode ref="verificationCodeRef"/>
           <button class="login-btn" @click="handleClick">登录</button>
         </div>
       </form>

@@ -92,7 +92,7 @@ defineExpose({
 
 <template>
   <div class="search-form">
-    <div v-for="(item,index) of searchFormModel" v-show="!item.hide" :key="index" class="form-item">
+    <div v-for="(item,index) of searchFormModel.els" v-show="!item.hide" :key="index" class="form-item">
       <component :is="item.renderFn" v-if="item.renderFn"/>
       <render v-else :item="item"></render>
     </div>

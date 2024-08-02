@@ -1,4 +1,4 @@
-import SearchFormType from "./type.d.ts";
+import SearchFormType from "./type.ts";
 
 /**
  * 搜索框

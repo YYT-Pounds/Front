@@ -9,7 +9,7 @@ export default {
 
 <script lang="tsx" setup>
 import {h, ref, resolveComponent, watch} from "vue";
-import SearchFormManager from "@/frame/components/search-form/search-form-manager.ts";
+import SearchFormManager from "./search-form-manager.ts";
 
 /**
  * 定义props

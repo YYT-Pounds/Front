@@ -21,12 +21,12 @@ const props = defineProps<{
 /**
  * 功能表单组件
  */
-const programFormModel: any = ref()
+const programFormModel = ref<ProgramFormManager>()
 
 /**
  * 初始化
  */
-function render({item}: any) {
+const render = ({item}: any) => {
   const {eType, event, props} = item
   const Type = resolveComponent(eType)
   return h(Type, {

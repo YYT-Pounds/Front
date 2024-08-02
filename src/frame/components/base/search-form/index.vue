@@ -28,7 +28,7 @@ const emit = defineEmits<{
 /**
  * 搜索表单组件
  */
-const searchFormModel: any = ref()
+const searchFormModel = ref<SearchFormManager<any>>()
 
 /**
  * 搜索表单数据

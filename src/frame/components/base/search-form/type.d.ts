@@ -11,12 +11,12 @@ namespace SearchFormType {
     /**
      * 绑定
      */
-    type props = SearchFormTypeProps
+    type props = SearchFormTypePropsModel
 
     /**
      * props接口
      */
-    interface SearchFormTypeProps {
+    interface SearchFormTypePropsModel {
         /**
          * 提示
          */

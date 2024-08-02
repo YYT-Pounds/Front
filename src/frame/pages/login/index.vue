@@ -12,6 +12,8 @@ import {ref} from "vue";
 import {useRouter} from "vue-router";
 import VerificationCode from "@/frame/components/business/verification-code/index.vue"
 import {defineSearchForm, SearchForm} from "@/frame/components/base/search-form/constructor.ts";
+import {defineProgramForm, ProgramForm} from "@/frame/components/base/program-form/constructor.ts";
+
 
 /**
  * 定义router
@@ -21,6 +23,12 @@ const router = useRouter()
 interface model {
   account: string
   password: string
+}
+
+const SearchFormRef = ref()
+const testData = (val: any) => {
+  console.log(val)
+  console.log(SearchFormRef.value.getSearchFormData())
 }
 
 const searchForm = defineSearchForm<model>({
@@ -35,6 +43,20 @@ const searchForm = defineSearchForm<model>({
     }
   ]
 })
+
+const programForm = defineProgramForm({
+  els: [
+    {
+      eType: "el-button",
+      label: "测试用",
+      event: testData,
+      props: {
+        type: "primary",
+      }
+    }
+  ]
+})
+console.log(searchForm)
 
 
 /**
@@ -53,11 +75,7 @@ const handleClick = () => {
   // processRequest.get("/api/test")
 }
 
-const SearchFormRef = ref()
-const testData = (val: any) => {
-  console.log(val)
-  console.log(SearchFormRef.value.getSearchFormData())
-}
+1
 </script>
 
 <template>
@@ -65,6 +83,7 @@ const testData = (val: any) => {
     <div class="container">
       <form class="login-form" onsubmit="return false">
         <SearchForm ref="SearchFormRef" :searchFormModel="searchForm" @refreshTableData="testData"/>
+        <ProgramForm ref="ProgramFormRef" :programFormModel="programForm"/>
         <div class="head" style="text-align: center">
           <p>安沁后台管理系统</p>
         </div>
@@ -82,6 +101,7 @@ const testData = (val: any) => {
             <label for="login_password"></label>
           </div>
           <VerificationCode ref="verificationCodeRef"/>
+          11111111111111111111111
           <button class="login-btn" @click="handleClick">登录</button>
         </div>
       </form>

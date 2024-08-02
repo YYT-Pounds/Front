@@ -39,8 +39,8 @@ const searchFormData: any = ref({})
  * 渲染
  */
 function render({item}: any) {
-  const {type, prop, props} = item
-  const Type = resolveComponent(type)
+  const {eType, prop, props} = item
+  const Type = resolveComponent(eType)
   return h(Type, {
     modelValue: searchFormData.value[prop],
     onInput: (value: any) => searchFormData.value[prop] = value,

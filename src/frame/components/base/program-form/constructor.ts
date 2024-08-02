@@ -1,8 +1,8 @@
 import ProgramFormManager from "./program-form-manager.ts"
-import SearchForm from "./index.vue"
+import ProgramForm from "./index.vue"
 
-const defineSearchForm = <Model>(Manager: ProgramFormManager<Model>): ProgramFormManager<Model> => {
+const defineProgramForm = (Manager: ProgramFormManager): ProgramFormManager => {
     return Manager
 }
 
-export {defineSearchForm, SearchForm}
+export {defineProgramForm, ProgramForm}

@@ -7,12 +7,12 @@ class ProgramFormManager {
     /**
      * 渲染列表
      */
-    els: ProgramFormItemManager
+    els: ProgramFormItemManager[]
 
     /**
      * 构造函数
      */
-    constructor(els: ProgramFormItemManager) {
+    constructor(els: ProgramFormItemManager[]) {
         this.els = els
     }
 }

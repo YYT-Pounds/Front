@@ -8,7 +8,6 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-
 import ProgramFormManager from "@/frame/components/base/program-form/program-form-manager.ts";
 import {resolveComponent, h, ref, watch} from "vue";
 
@@ -28,8 +27,8 @@ const programFormModel: any = ref()
  * 初始化
  */
 function render({item}: any) {
-  const {type, event, props} = item
-  const Type = resolveComponent(type)
+  const {eType, event, props} = item
+  const Type = resolveComponent(eType)
   return h(Type, {
         onClick: event,
         ...Object.assign({}, props)

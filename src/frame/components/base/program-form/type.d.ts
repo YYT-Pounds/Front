@@ -11,21 +11,20 @@ namespace ProgramFormType {
     /**
      * 绑定
      */
-    type props = ProgramFormItemPropsModel;
+    type props = ProgramFormItemPropsModel
 
+    /**
+     * props接口
+     */
     interface ProgramFormItemPropsModel {
         /**
          * 按钮样式
          */
-        type?: string;
+        type?: BaseType.type
         /**
-         * 提示文本
+         * 是否有边框与背景
          */
-        placeholder?: string;
-        /**
-         * 是否可清空
-         */
-        clearable?: BaseType.bool;
+        link?: BaseType.bool
     }
 }
 

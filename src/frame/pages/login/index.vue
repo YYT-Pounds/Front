@@ -26,7 +26,7 @@ interface model {
 const searchForm = defineSearchForm<model>({
   els: [
     {
-      type: "el-input",
+      eType: "el-input",
       prop: "account",
       props: {
         placeholder: "账号",
@@ -35,6 +35,7 @@ const searchForm = defineSearchForm<model>({
     }
   ]
 })
+
 
 /**
  * 验证码组件

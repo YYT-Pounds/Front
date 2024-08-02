@@ -4,6 +4,9 @@ import SearchFormType from "./type.ts";
  * 搜索框
  */
 class SearchFormManager<Model> {
+    /**
+     * 渲染列表
+     */
     els: SearchFormItemManager<Model>[]
 
     /**
@@ -21,7 +24,7 @@ class SearchFormItemManager<Model> {
     /**
      * 组件名称
      */
-    type: SearchFormType.type;
+    eType: SearchFormType.eType;
     /**
      * 名称
      */
@@ -38,8 +41,8 @@ class SearchFormItemManager<Model> {
     /**
      * 构造函数
      */
-    constructor(type: SearchFormType.type, prop: keyof Model) {
-        this.type = type;
+    constructor(eType: SearchFormType.eType, prop: keyof Model) {
+        this.eType = eType;
         this.prop = prop;
     }
 

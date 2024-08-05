@@ -20,7 +20,7 @@ class TableManager<Model> {
     /**
      * 操作栏
      */
-    operation?: TableOperationModel;
+    operation?: TableOperationModel<Model>;
     /**
      * 渲染列表
      */
@@ -37,7 +37,7 @@ class TableManager<Model> {
 /**
  * 操作栏模型
  */
-interface TableOperationModel {
+interface TableOperationModel<Model> {
     /**
      * 长度
      */
@@ -53,13 +53,13 @@ interface TableOperationModel {
     /**
      * 操作栏子项
      */
-    els: TableOperationItemManager[];
+    els: TableOperationItemManager<Model>[];
 }
 
 /**
  * 操作栏实例
  */
-class TableOperationItemManager {
+class TableOperationItemManager<Model> {
     /**
      * 名称
      */
@@ -71,7 +71,7 @@ class TableOperationItemManager {
     /**
      * 方法
      */
-    event: Function
+    event: string
     /**
      * 绑定
      */
@@ -79,7 +79,7 @@ class TableOperationItemManager {
     /**
      * 自定义渲染函数
      */
-    renderFn?: Function
+    renderFn?: (this: any, row: Model) => JSX.Element
     /**
      * 是否隐藏
      */
@@ -88,7 +88,7 @@ class TableOperationItemManager {
     /**
      * 构造函数
      */
-    constructor(label: string, eType: TableType.eType, event: Function) {
+    constructor(label: string, eType: TableType.eType, event: string) {
         this.label = label
         this.eType = eType
         this.event = event

@@ -1,8 +1,9 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsxPlugin from "@vitejs/plugin-vue-jsx";
 // @ts-ignore
 import path from 'path'
-import vueJsxPlugin from "@vitejs/plugin-vue-jsx";
+
 
 /**
  * 基础路径

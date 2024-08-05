@@ -12,6 +12,11 @@ import ProgramFormManager from "@/frame/components/base/program-form/program-for
 import {resolveComponent, h, ref, watch} from "vue";
 
 /**
+ * 定义emit
+ */
+const emit = defineEmits()
+
+/**
  * 定义props
  */
 const props = defineProps<{
@@ -30,7 +35,9 @@ const render = ({item}: any) => {
   const {eType, event, props} = item
   const Type = resolveComponent(eType)
   return h(Type, {
-        onClick: event,
+        onClick(){
+          emit(event)
+        },
         ...Object.assign({}, props)
       },
       () => item.label)

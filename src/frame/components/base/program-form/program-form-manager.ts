@@ -28,11 +28,11 @@ class ProgramFormItemManager {
     /**
      * 名称
      */
-    label: String
+    label: string
     /**
      * 绑定的方法
      */
-    event: Function
+    event: string
     /**
      * 绑定
      */
@@ -40,12 +40,12 @@ class ProgramFormItemManager {
     /**
      * 渲染函数
      */
-    renderFn?: Function
+    renderFn?: (this:any)=> JSX.Element
 
     /**
      * 构造函数
      */
-    constructor(eType: ProgramFormType.eType, label: String, event: Function) {
+    constructor(eType: ProgramFormType.eType, label: string, event: string) {
         this.eType = eType;
         this.label = label;
         this.event = event;

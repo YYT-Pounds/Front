@@ -209,7 +209,7 @@ defineExpose({
     </div>
     <div v-if="pageModel?.programForm" class="program-form">
       <slot name="program-form">
-        <ProgramForm ref="programFormRef" :programFormModel="pageModel?.programForm"/>
+        <ProgramForm ref="programFormRef" :programFormModel="pageModel?.programForm" v-bind="$attrs" />
       </slot>
     </div>
     <div v-if="pageModel?.table" class="table">

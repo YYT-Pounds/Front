@@ -69,7 +69,7 @@ const config = definePageModel<any>({
         props: {
           type: "primary",
         },
-        event: handleAdd
+        event: "add"
       },
     ]
   },
@@ -168,7 +168,7 @@ const config = definePageModel<any>({
 
 <template>
   <div class="customer">
-    <PageModel ref="pageModelRef" :PageModel="config"/>
+    <PageModel ref="pageModelRef" :PageModel="config" @add="handleAdd"/>
   </div>
 </template>
 

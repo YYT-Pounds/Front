@@ -15,6 +15,7 @@ import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts
  * 新增
  */
 const handleAdd = () => {
+  // console.log(1)
   pageModelRef.value.handleAdd()
 }
 
@@ -69,7 +70,7 @@ const config = definePageModel<any>({
         props: {
           type: "primary",
         },
-        event: handleAdd
+        event: "add"
       },
     ]
   },
@@ -84,7 +85,7 @@ const config = definePageModel<any>({
         {
           eType: "el-button",
           label: "编辑",
-          event: handleEdit,
+          event: "edit",
           props: {
             type: "primary",
             link: true
@@ -93,7 +94,7 @@ const config = definePageModel<any>({
         {
           eType: "el-button",
           label: "删除",
-          event: handleDelete,
+          event: "delete",
           props: {
             type: "primary",
             link: true
@@ -171,7 +172,7 @@ const config = definePageModel<any>({
 
 <template>
   <div class="customer">
-    <PageModel ref="pageModelRef" :PageModel="config"/>
+    <PageModel ref="pageModelRef" :PageModel="config" @add="handleAdd" @edit="handleEdit" @delete="handleDelete"/>
   </div>
 </template>
 

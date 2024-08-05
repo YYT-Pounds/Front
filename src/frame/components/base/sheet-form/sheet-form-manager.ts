@@ -53,7 +53,7 @@ class SheetFormItemManager<Model> {
     /**
      * 自定义渲染函数
      */
-    renderFn?: Function;
+    renderFn?: (this: any) => JSX.Element;
     /**
      * 是否显示
      */

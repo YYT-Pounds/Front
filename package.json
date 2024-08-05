@@ -8,24 +8,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/node": "^20.14.8",
+    "@types/node": "^22.1.0",
     "@types/vue": "^2.0.0",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "@vue/babel-plugin-jsx": "^1.2.2",
     "@vue/babel-preset-jsx": "^1.4.0",
-    "axios": "^1.7.2",
-    "element-plus": "^2.7.6",
-    "npm-check-updates": "^16.14.20",
-    "pinia": "^2.1.7",
-    "sass": "^1.77.6",
-    "vue": "^3.4.30",
-    "vue-router": "^4.4.0"
+    "axios": "^1.7.3",
+    "element-plus": "^2.7.8",
+    "npm-check-updates": "^17.0.2",
+    "pinia": "^2.2.0",
+    "sass": "^1.77.8",
+    "vue": "^3.4.35",
+    "vue-router": "^4.4.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.5",
-    "typescript": "^5.5.2",
-    "vite": "^5.3.1",
-    "vue-tsc": "^2.0.22"
+    "@vitejs/plugin-vue": "^5.1.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.5",
+    "vue-tsc": "^2.0.29"
   },
   "main": "src/main.ts",
   "author": "pounds",

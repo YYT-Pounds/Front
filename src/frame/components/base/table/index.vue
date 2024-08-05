@@ -5,6 +5,7 @@
 export default {
   name: "table"
 }
+
 </script>
 
 <script lang="tsx" setup>

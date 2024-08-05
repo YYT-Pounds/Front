@@ -8,9 +8,8 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import PageModel from '@/frame/components/page-model/index.vue'
 import {ref} from "vue";
-import definePageModel from "@/frame/components/page-model/constructor.ts";
+import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts";
 
 /**
  * 页面模型
@@ -61,15 +60,16 @@ const config = definePageModel({
       width: 160,
       els: [
         {
-          type: "el-button",
+          eType: "el-button",
           label: "编辑",
+          event:null,
           props: {
             type: "primary",
             link: true
           }
         },
         {
-          type: "el-button",
+          eType: "el-button",
           label: "删除",
           props: {
             type: "primary",

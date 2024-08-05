@@ -11,81 +11,11 @@ export default {
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import VerificationCode from "@/frame/components/business/verification-code/index.vue"
-import {defineSearchForm, SearchForm} from "@/frame/components/base/search-form/constructor.ts";
-import {defineProgramForm, ProgramForm} from "@/frame/components/base/program-form/constructor.ts";
-import {defineDialogSheetForm, DialogSheetForm} from "@/frame/view/dialog-sheet-form/constructor.ts";
-
 
 /**
  * 定义router
  */
 const router = useRouter()
-
-interface Model {
-  account: string
-  password: string
-}
-
-const SearchFormRef = ref()
-const testData = (val: any) => {
-  console.log(val)
-  console.log(SearchFormRef.value.getSearchFormData())
-}
-
-const searchForm = defineSearchForm<Model>({
-  els: [
-    {
-      eType: "el-input",
-      prop: "account",
-      props: {
-        placeholder: "账号",
-        clearable: true
-      }
-    }
-  ]
-})
-
-const programForm = defineProgramForm({
-  els: [
-    {
-      eType: "el-button",
-      label: "测试用",
-      event: testData,
-      props: {
-        type: "primary",
-      }
-    }
-  ]
-})
-
-const dialogSheetFormRef = ref()
-const form = defineDialogSheetForm<Model>({
-  title: "测试",
-  width: 500,
-  form: {
-    labelWidth: "100px",
-    els: [
-      {
-        label: "测试用",
-        eType: "el-input",
-        prop: "account",
-        props: {
-          placeholder: "测试用",
-          clearable: true
-        }
-      },
-      {
-        label: "测试用",
-        eType: "el-input",
-        prop: "account",
-        props: {
-          placeholder: "测试用",
-          clearable: true
-        }
-      }
-    ]
-  }
-})
 
 /**
  * 验证码组件
@@ -98,20 +28,14 @@ const verificationCodeRef = ref()
 const account = ref()
 const password = ref()
 const handleClick = () => {
-  dialogSheetFormRef.value.show()
-  // router.push({path: "/customer"})
-  // processRequest.get("/api/test")
+  router.push({path: "/customer"})
 }
-
-1
 </script>
 
 <template>
   <div class="login">
     <div class="container">
       <form class="login-form" onsubmit="return false">
-        <SearchForm ref="SearchFormRef" :searchFormModel="searchForm" @refreshTableData="testData"/>
-        <ProgramForm ref="ProgramFormRef" :programFormModel="programForm"/>
         <div class="head" style="text-align: center">
           <p>安沁后台管理系统</p>
         </div>
@@ -134,9 +58,6 @@ const handleClick = () => {
       </form>
     </div>
   </div>
-
-  <DialogSheetForm ref="dialogSheetFormRef" :dialogSheetFormModel="form"/>
-
 </template>
 
 <style lang="scss" scoped>

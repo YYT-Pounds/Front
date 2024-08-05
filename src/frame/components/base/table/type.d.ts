@@ -36,13 +36,23 @@ namespace TableType {
     }
 
     /**
+     * 操作栏样式类型
+     */
+    type type = "primary" | "info" | "danger" | "warning" | ""
+
+    /**
+     * 操作栏样式大小
+     */
+    type size = "small" | "large"
+
+    /**
      * 操作栏样式
      */
     interface TableOperationItemPropsModel {
         /**
          * 类型
          */
-        type?: string
+        type?: type
         /**
          * 是否有边框
          */
@@ -50,11 +60,11 @@ namespace TableType {
         /**
          * 尺寸
          */
-        size?: string
+        size?: size
         /**
          * 是否关闭
          */
-        disabled: Function | BaseType.bool
+        disabled?: Function | BaseType.bool
     }
 
     /**
@@ -64,7 +74,7 @@ namespace TableType {
         /**
          * 是否排序
          */
-        sortable?: boolean;
+        sortable?: BaseType.bool
     }
 }
 

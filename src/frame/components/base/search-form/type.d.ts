@@ -8,15 +8,11 @@ namespace SearchFormType {
      * 组件名称
      */
     type eType = "el-input" | "el-select" | "el-date-picker" | "el-time-picker"
-    /**
-     * 绑定
-     */
-    type props = SearchFormTypePropsModel
 
     /**
      * props接口
      */
-    interface SearchFormTypePropsModel {
+    interface SearchFormTypePropsModel<Model> {
         /**
          * 提示
          */
@@ -28,7 +24,7 @@ namespace SearchFormType {
         /**
          * 是否禁用
          */
-        disabled?: BaseType.bool | Function
+        disabled?: (data:Model) => boolean
     }
 }
 

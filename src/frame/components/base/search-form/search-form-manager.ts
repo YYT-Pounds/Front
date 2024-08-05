@@ -13,7 +13,7 @@ class SearchFormManager<Model> {
      * 构造函数
      */
     constructor(els: SearchFormItemManager<Model>[]) {
-        this.els = els;
+        this.els = els
     }
 }
 
@@ -24,37 +24,37 @@ class SearchFormItemManager<Model> {
     /**
      * 组件名称
      */
-    eType: SearchFormType.eType;
+    eType: SearchFormType.eType
     /**
      * 名称
      */
-    label?: String;
+    label?: string
     /**
      * 值
      */
-    prop: keyof Model;
+    prop: keyof Model
     /**
      * 绑定
      */
-    props?: SearchFormType.props;
+    props?: SearchFormType.SearchFormTypePropsModel<Model>
 
     /**
      * 构造函数
      */
     constructor(eType: SearchFormType.eType, prop: keyof Model) {
-        this.eType = eType;
-        this.prop = prop;
+        this.eType = eType
+        this.prop = prop
     }
 
     /**
      * 自定义渲染函数
      */
-    renderFn?(data: Model): void;
+    renderFn?: (this: any, data: Model) => JSX.Element
 
     /**
      * 是否隐藏
      */
-    hide?(data: Model): boolean;
+    hide?: (data: Model) => boolean
 }
 
 /**

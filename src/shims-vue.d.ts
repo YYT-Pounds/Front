@@ -1,4 +1,5 @@
 import {ComponentCustomProps, DefineComponent} from "vue"
+import "vue/jsx"
 
 declare module 'vue' {
     interface GlobalComponents {

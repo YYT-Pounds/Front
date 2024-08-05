@@ -40,7 +40,7 @@ class ProgramFormItemManager {
     /**
      * 渲染函数
      */
-    renderFn?: (this:any)=> JSX.Element
+    renderFn?: (this: any) => JSX.Element
 
     /**
      * 构造函数

@@ -7,15 +7,15 @@ class SheetFormManager<Model> {
     /**
      * 表单子项label长度
      */
-    labelWidth: string;
+    labelWidth: string
     /**
      * 绑定数据前操作
      */
-    bindData?: Function;
+    bindData?: (data: Model) => boolean
     /**
      * 提交数据前操作
      */
-    beforeSubmit?: Function;
+    beforeSubmit?: (data: Model) => boolean
     /**
      * 渲染列表
      */
@@ -37,27 +37,27 @@ class SheetFormItemManager<Model> {
     /**
      * 名称
      */
-    label: string;
+    label: string
     /**
      * 组件名称
      */
-    eType: SheetFormType.eType;
+    eType: SheetFormType.eType
     /**
      * 值
      */
-    prop: keyof Model;
+    prop: keyof Model
     /**
      * 绑定
      */
-    props?: SheetFormType.props;
+    props?: SheetFormType.props
     /**
      * 自定义渲染函数
      */
-    renderFn?: (this: any) => JSX.Element;
+    renderFn?: (this: any, row: Model) => JSX.Element
     /**
      * 是否显示
      */
-    hide?: Function | boolean;
+    hide?: (data: Model) => boolean
 
     /**
      * 构造函数

@@ -8,19 +8,19 @@ class TableManager<Model> {
     /**
      * 表格样式
      */
-    props?: TableType.TablePropsModel;
+    props?: TableType.TablePropsModel
     /**
      * 分页
      */
-    page?: TableType.TablePageModel;
+    page?: TableType.TablePageModel
     /**
      * 是否开启多选
      */
-    selection?: BaseType.bool;
+    selection?: BaseType.bool
     /**
      * 操作栏
      */
-    operation?: TableOperationModel<Model>;
+    operation?: TableOperationModel<Model>
     /**
      * 渲染列表
      */
@@ -41,19 +41,19 @@ interface TableOperationModel<Model> {
     /**
      * 长度
      */
-    width?: number;
+    width?: number
     /**
      * 绑定数据前操作
      */
-    bindData?: Function;
+    bindData?: (data: Model) => Model
     /**
      * 提交数据前操作
      */
-    beforeSubmit?: Function;
+    beforeSubmit?: (data: Model) => Model
     /**
      * 操作栏子项
      */
-    els: TableOperationItemManager<Model>[];
+    els: TableOperationItemManager<Model>[]
 }
 
 /**
@@ -122,7 +122,7 @@ class TableItemManager<Model> {
     /**
      * 自定义渲染函数
      */
-    renderFn?: Function;
+    renderFn?: (this: any, row: Model) => JSX.Element;
 
     /**
      * 构造函数

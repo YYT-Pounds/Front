@@ -13,7 +13,7 @@ import {useRouter} from "vue-router";
 import VerificationCode from "@/frame/components/business/verification-code/index.vue"
 import {defineSearchForm, SearchForm} from "@/frame/components/base/search-form/constructor.ts";
 import {defineProgramForm, ProgramForm} from "@/frame/components/base/program-form/constructor.ts";
-import {defineSheetForm, SheetForm} from "@/frame/components/base/sheet-form/constructor.ts";
+import {defineDialogSheetForm, DialogSheetForm} from "@/frame/view/dialog-sheet-form/constructor.ts";
 
 
 /**
@@ -58,38 +58,33 @@ const programForm = defineProgramForm({
   ]
 })
 
-const sheetFormRef = ref()
-const sheetForm = defineSheetForm<Model>({
-  labelWidth: "60px",
-  els: [
-    {
-      label: "测试",
-      eType: "el-input",
-      prop: "account",
-      props: {
-        placeholder: "请双雄教我本领",
-        clearable: true
+const dialogSheetFormRef = ref()
+const form = defineDialogSheetForm<Model>({
+  title: "测试",
+  width: 500,
+  form: {
+    labelWidth: "100px",
+    els: [
+      {
+        label: "测试用",
+        eType: "el-input",
+        prop: "account",
+        props: {
+          placeholder: "测试用",
+          clearable: true
+        }
+      },
+      {
+        label: "测试用",
+        eType: "el-input",
+        prop: "account",
+        props: {
+          placeholder: "测试用",
+          clearable: true
+        }
       }
-    },
-    {
-      label: "测试",
-      eType: "el-input",
-      prop: "account",
-      props: {
-        placeholder: "请双雄教我本领",
-        clearable: true
-      }
-    },
-    {
-      label: "测试",
-      eType: "el-input",
-      prop: "account",
-      props: {
-        placeholder: "请双雄教我本领",
-        clearable: true
-      }
-    }
-  ],
+    ]
+  }
 })
 
 /**
@@ -103,7 +98,7 @@ const verificationCodeRef = ref()
 const account = ref()
 const password = ref()
 const handleClick = () => {
-  console.log(verificationCodeRef.value)
+  dialogSheetFormRef.value.show()
   // router.push({path: "/customer"})
   // processRequest.get("/api/test")
 }
@@ -117,13 +112,12 @@ const handleClick = () => {
       <form class="login-form" onsubmit="return false">
         <SearchForm ref="SearchFormRef" :searchFormModel="searchForm" @refreshTableData="testData"/>
         <ProgramForm ref="ProgramFormRef" :programFormModel="programForm"/>
-        <SheetForm ref="sheetFormRef" :SheetFormModel="sheetForm"/>
         <div class="head" style="text-align: center">
           <p>安沁后台管理系统</p>
         </div>
         <div class="actual-from">
           <div class="input-wrap">
-            <input id="login_account" v-model="account" autocomplete="off" class="input-field" minlength="6"
+            <input id="login_account" v-model="account" autocomplete="off" class="input-field"
                    placeholder="账号"
                    required type="text">
             <label for="login_account"></label>
@@ -135,12 +129,13 @@ const handleClick = () => {
             <label for="login_password"></label>
           </div>
           <VerificationCode ref="verificationCodeRef"/>
-          11111111111111111111111
           <button class="login-btn" @click="handleClick">登录</button>
         </div>
       </form>
     </div>
   </div>
+
+  <DialogSheetForm ref="dialogSheetFormRef" :dialogSheetFormModel="form"/>
 
 </template>
 

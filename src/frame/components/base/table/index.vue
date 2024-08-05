@@ -9,14 +9,14 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {h, ref, resolveComponent, watch, defineEmits, defineProps} from 'vue'
+import {h, ref, resolveComponent, watch, defineEmits, defineProps, nextTick} from 'vue'
 import TableManager from "@/frame/components/base/table/table-manager.ts"
 
 /**
  * 定义emit
  */
 const emit = defineEmits<{
-  (e: 'handlePageDataChange', index: number, size: number): void
+  (e: 'refreshTableData'): void
 }>()
 
 /**
@@ -88,14 +88,36 @@ const getSelectionData = () => {
  */
 const handleSizeChange = (val: number) => {
   pageSize.value = val
-  emit("handlePageDataChange", currentPage.value, pageSize.value)
+  emit('refreshTableData')
 }
 /**
  * 监听页码变化
  */
 const handleCurrentChange = (val: number) => {
   currentPage.value = val
-  emit("handlePageDataChange", currentPage.value, pageSize.value)
+  emit('refreshTableData')
+}
+/**
+ * 获取页码数据
+ */
+const getPaginationData = () => {
+  return {
+    currentPage: currentPage.value,
+    pageSize: pageSize.value
+  }
+}
+
+/**
+ * 获取表格数据
+ */
+const getTableData = () => {
+  return tableData.value
+}
+/**
+ * 设置表格数据
+ */
+const setTableData = (data: any) => {
+  tableData.value = data
 }
 
 
@@ -103,7 +125,9 @@ const handleCurrentChange = (val: number) => {
  * 初始化
  */
 const init = () => {
-  handleSizeChange(tableModel.value?.page?.pageSize || 20)
+  nextTick(() => {
+    handleSizeChange(tableModel.value?.page?.pageSize || 20)
+  })
 }
 init()
 
@@ -111,7 +135,10 @@ init()
  * 暴露
  */
 defineExpose({
-  getSelectionData
+  getSelectionData,
+  getPaginationData,
+  getTableData,
+  setTableData
 })
 </script>
 

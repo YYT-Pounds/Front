@@ -66,6 +66,13 @@ const setFormData = (data: any) => {
   SheetFormRef.value.setFormData(data)
 }
 
+/**
+ * 提交表单
+ */
+const handleSubmit = () => {
+
+}
+
 defineExpose({
   show,
   getFormData,
@@ -77,7 +84,19 @@ defineExpose({
   <div class="form">
     <el-dialog v-model="visible" :before-close="close" :title="dialogSheetFormModel?.title"
                :width="dialogSheetFormModel?.width">
-      <SheetForm ref="SheetFormRef" :SheetFormModel="dialogSheetFormModel?.form"/>
+      <div class="form-content">
+        <SheetForm ref="SheetFormRef" :SheetFormModel="dialogSheetFormModel?.form"/>
+      </div>
+      <div class="form-bottom">
+        <el-button @click="close">取消</el-button>
+        <el-button type="primary" @click="handleSubmit">提交</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
+
+<style lang="scss">
+.form-bottom {
+  text-align: center;
+}
+</style>

@@ -51,7 +51,7 @@ watch(() => props.programFormModel, function (newValue: any) {
 
 <template>
   <div class="program-form">
-    <div v-for="(item,index) of programFormModel.els" :key="index">
+    <div v-for="(item,index) of programFormModel?.els" :key="index">
       <component :is="item.renderFn" v-if="item.renderFn"/>
       <render v-else :item="item" class="form-item"></render>
     </div>

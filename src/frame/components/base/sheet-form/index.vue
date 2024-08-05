@@ -86,19 +86,3 @@ defineExpose({
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.sheet-form {
-  display: flex;
-  flex-direction: column;
-
-  .form-content {
-    flex: 1;
-  }
-
-  .form-bottom {
-    flex: 0;
-    text-align: center;
-  }
-}
-</style>

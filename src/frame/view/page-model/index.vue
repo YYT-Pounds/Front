@@ -14,6 +14,7 @@ import SearchForm from "@/frame/components/base/search-form/index.vue";
 import ProgramForm from "@/frame/components/base/program-form/index.vue";
 import Table from "@/frame/components/base/table/index.vue";
 import Form from "@/frame/view/dialog-sheet-form/index.vue"
+import {processRequest} from "@/frame/apis";
 
 /**
  * 定义props
@@ -62,15 +63,73 @@ const handleEdit = (row: any) => {
 }
 
 /**
+ * 获取搜索框数据
+ */
+const getSearchFormData = () => {
+  return searchFormRef.value.getSearchFormData()
+}
+
+/**
+ * 获取表格所选项
+ */
+const getTableSelectData = () => {
+  return tableRef.value.getSelectionData()
+}
+
+/**
+ * 获取表格数据
+ */
+const getTableData = () => {
+  return tableRef.value.getTableData()
+}
+
+/**
+ * 设置表格数据
+ */
+const setTableData = (data: any[]) => {
+  tableRef.value.setTableData(data)
+}
+
+/**
+ * 获取表单数据
+ */
+const getFormData = () => {
+  return formRef.value.getFormData()
+}
+
+/**
+ * 设置表单数据
+ */
+const setFormData = (data: any) => {
+  formRef.value.setFormData(data)
+}
+
+/**
+ * 刷新表格
+ */
+const refreshTableData = async () => {
+  const pageData = tableRef.value.getPaginationData()
+  const searchData = searchFormRef.value.getSearchFormData()
+  const result: any = await processRequest.get(pageModel.value?.url as string, {
+    ...pageData,
+    ...searchData
+  })
+  setTableData(result)
+}
+
+/**
  * 暴露
  */
 defineExpose({
-  searchFormRef,
-  programFormRef,
-  tableRef,
-  formRef,
   handleAdd,
   handleEdit,
+  refreshTableData,
+  getSearchFormData,
+  getTableSelectData,
+  getTableData,
+  setTableData,
+  getFormData,
+  setFormData
 })
 </script>
 
@@ -78,21 +137,21 @@ defineExpose({
   <div class="content-logout">
     <div v-if="pageModel?.searchForm" class="search-form">
       <slot name="search-form">
-        <SearchForm ref="searchFormRef" :searchFormModel="pageModel?.searchForm"/>
+        <SearchForm ref="searchFormRef" :searchFormModel="pageModel?.searchForm" @refreshTableData="refreshTableData"/>
       </slot>
     </div>
     <div v-if="pageModel?.programForm" class="program-form">
       <slot name="program-form">
-        <ProgramForm ref="programFormRef" :programFormModel="pageModel?.programForm"></ProgramForm>
+        <ProgramForm ref="programFormRef" :programFormModel="pageModel?.programForm"/>
       </slot>
     </div>
     <div v-if="pageModel?.table" class="table">
       <slot name="table">
-        <Table ref="tableRef" :table="pageModel?.table"></Table>
+        <Table ref="tableRef" :table="pageModel?.table" @refreshTableData="refreshTableData"/>
       </slot>
     </div>
     <div v-if="pageModel?.form" class="form">
-      <Form ref="formRef" :dialogSheetFormModel="pageModel?.form"></Form>
+      <Form ref="formRef" :dialogSheetFormModel="pageModel?.form"/>
     </div>
   </div>
 </template>

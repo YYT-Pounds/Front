@@ -15,6 +15,7 @@ import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts
  * 新增
  */
 const handleAdd = () => {
+  // console.log(pageModelRef.value)
   pageModelRef.value.handleAdd()
 }
 
@@ -37,7 +38,7 @@ const handleDelete = (row: any) => {
  */
 const pageModelRef = ref()
 const config = definePageModel({
-  url: "http://118.178.254.102:1254/peaceful/admin/select",
+  url: "/api/admin/select",
   method: "get",
   searchForm: {
     els: [

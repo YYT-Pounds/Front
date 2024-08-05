@@ -22,7 +22,7 @@ const props = defineProps<{
  * 定义emit
  */
 const emit = defineEmits<{
-  (e: 'refreshTableData', value?: boolean): void
+  (e: 'refreshTableData'): void
 }>()
 
 /**
@@ -53,14 +53,14 @@ function render({item}: any) {
  */
 const handleReset = () => {
   searchFormData.value = {};
-  emit('refreshTableData', false)
+  emit('refreshTableData')
 }
 
 /**
  * 筛选
  */
 const handleSearch = () => {
-  emit('refreshTableData', true)
+  emit('refreshTableData')
 }
 
 /**
@@ -92,7 +92,7 @@ defineExpose({
 
 <template>
   <div class="search-form">
-    <div v-for="(item,index) of searchFormModel.els" v-show="!item.hide" :key="index" class="form-item">
+    <div v-for="(item,index) of searchFormModel?.els" v-show="!item.hide" :key="index" class="form-item">
       <component :is="item.renderFn" v-if="item.renderFn"/>
       <render v-else :item="item"></render>
     </div>

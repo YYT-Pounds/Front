@@ -8,8 +8,8 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import PageLayout from "@/frame/components/page-layout/index.vue";
-import PageAside from "@/frame/components/page-aside/index.vue";
+import PageLayout from "@/frame/components/layout/page-layout/index.vue";
+import PageAside from "@/frame/components/layout/page-aside/index.vue";
 </script>
 
 <template>

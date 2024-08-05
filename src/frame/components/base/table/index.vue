@@ -50,7 +50,7 @@ const currentPage = ref(1)
 /**
  * 一页显示多少数据
  */
-const pageSize = ref(tableModel.page?.pageSize || 20)
+const pageSize = ref(tableModel.value?.page?.pageSize || 20)
 /**
  * 当前选中数据
  */
@@ -102,7 +102,7 @@ const handleCurrentChange = (val: number) => {
  * 初始化
  */
 const init = () => {
-  handleSizeChange(props.table.page?.pageSize || 20)
+  handleSizeChange(tableModel.value?.page?.pageSize || 20)
 }
 init()
 
@@ -117,21 +117,21 @@ defineExpose({
 <template>
   <div class="table">
     <div class="container">
-      <el-table ref="tableRef" :border="props.table.props?.border" :data="tableData" :stripe="props.table.props?.stripe"
+      <el-table ref="tableRef" :border="tableModel?.props?.border" :data="tableData" :stripe="tableModel?.props?.stripe"
                 class="table-content" empty-text="暂无数据"
                 height="100%" style="width:100%" @selection-change="handleSelectionChange">
-        <el-table-column v-if="props.table.selection" type="selection" width="55"/>
-        <el-table-column v-for="(item,index) of props.table.els" :key="index" :label="item.label"
+        <el-table-column v-if="tableModel?.selection" type="selection" width="55"/>
+        <el-table-column v-for="(item,index) of tableModel?.els" :key="index" :label="item.label"
                          :min-width="item.minWidth"
                          :prop="item.prop" :width="item.width" class="table-item">
           <template v-if="item.renderFn" #default>
             <component :is="item.renderFn"/>
           </template>
         </el-table-column>
-        <el-table-column v-if="props.table?.operation?.els" :width="props.table.operation?.width" label="操作栏">
+        <el-table-column v-if="tableModel?.operation?.els" :width="tableModel?.operation?.width" label="操作栏">
           <template #default="scope">
             <div class="table-operation-list">
-              <div v-for="(item,index) of props.table.operation?.els" v-show="!item.hide" :key="index"
+              <div v-for="(item,index) of tableModel?.operation?.els" v-show="!item.hide" :key="index"
                    class="table-operation-item">
                 <component :is="item.renderFn" v-if="item.renderFn"/>
                 <render v-else :item="item" @click="item.event(scope.row)"/>
@@ -143,11 +143,11 @@ defineExpose({
     </div>
     <div class="page">
       <div class="left">
-        <el-button v-if="props.table.selection" class="left-btn" type="primary">清空选择</el-button>
+        <el-button v-if="tableModel?.selection" class="left-btn" type="primary">清空选择</el-button>
       </div>
       <div class="right">
         <el-pagination
-            v-if="table?.page?.enable == null ? true : table?.page?.enable"
+            v-if="tableModel?.page?.enable == null ? true : tableModel?.page?.enable"
             v-model:current-page="currentPage"
             v-model:page-size="pageSize"
             :page-sizes="[10, 20, 50, 100]"

@@ -53,7 +53,7 @@ interface TableOperationModel {
     /**
      * 操作栏子项
      */
-    els: TableOperationItemManager;
+    els: TableOperationItemManager[];
 }
 
 /**
@@ -83,16 +83,15 @@ class TableOperationItemManager {
     /**
      * 是否隐藏
      */
-    hide: Function | BaseType.bool
+    hide?: Function | BaseType.bool
 
     /**
      * 构造函数
      */
-    constructor(label: string, eType: TableType.eType, event: Function, hide: Function | BaseType.bool) {
+    constructor(label: string, eType: TableType.eType, event: Function) {
         this.label = label
         this.eType = eType
         this.event = event
-        this.hide = hide
     }
 }
 

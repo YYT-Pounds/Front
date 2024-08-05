@@ -1,13 +1,47 @@
-import SheetFormType from "./type.ts";
+import TableType from "./type.ts";
+import BaseType from "@/frame/model/base/base-type.ts";
 
 /**
  * 功能框
  */
 class TableManager<Model> {
     /**
-     * 表单子项label长度
+     * 表格样式
      */
-    labelWidth: string;
+    props?: TableType.TablePropsModel;
+    /**
+     * 分页
+     */
+    page?: TableType.TablePageModel;
+    /**
+     * 是否开启多选
+     */
+    selection?: BaseType.bool;
+    /**
+     * 操作栏
+     */
+    operation?: TableOperationModel;
+    /**
+     * 渲染列表
+     */
+    els: TableItemManager<Model>[]
+
+    /**
+     * 构造函数
+     */
+    constructor(els: TableItemManager<Model>[]) {
+        this.els = els
+    }
+}
+
+/**
+ * 操作栏模型
+ */
+interface TableOperationModel {
+    /**
+     * 长度
+     */
+    width?: number;
     /**
      * 绑定数据前操作
      */
@@ -17,53 +51,84 @@ class TableManager<Model> {
      */
     beforeSubmit?: Function;
     /**
-     * 渲染列表
+     * 操作栏子项
      */
-    els: SheetFormItemManager<Model>[]
+    els: TableOperationItemManager;
+}
+
+/**
+ * 操作栏实例
+ */
+class TableOperationItemManager {
+    /**
+     * 名称
+     */
+    label: string
+    /**
+     * 组件名称
+     */
+    eType: TableType.eType
+    /**
+     * 方法
+     */
+    event: Function
+    /**
+     * 绑定
+     */
+    props?: TableType.TableOperationItemPropsModel
+    /**
+     * 自定义渲染函数
+     */
+    renderFn?: Function
+    /**
+     * 是否隐藏
+     */
+    hide: Function | BaseType.bool
 
     /**
      * 构造函数
      */
-    constructor(els: SheetFormItemManager<Model>[], labelWidth: string) {
-        this.els = els
-        this.labelWidth = labelWidth
+    constructor(label: string, eType: TableType.eType, event: Function, hide: Function | BaseType.bool) {
+        this.label = label
+        this.eType = eType
+        this.event = event
+        this.hide = hide
     }
 }
 
 /**
- * 搜索框 - 子组件
+ * 表格子项实例
  */
-class SheetFormItemManager<Model> {
+class TableItemManager<Model> {
     /**
-     * 名称
+     * 表头名称
      */
-    label: string;
-    /**
-     * 组件名称
-     */
-    eType: SheetFormType.eType;
+    label: string
     /**
      * 值
      */
-    prop: keyof Model;
+    prop: keyof Model
+    /**
+     * 宽度
+     */
+    width?: number
+    /**
+     * 最小宽度
+     */
+    minWidth?: number
     /**
      * 绑定
      */
-    props?: SheetFormType.props;
+    props?: TableType.TableItemPropsModel;
     /**
      * 自定义渲染函数
      */
     renderFn?: Function;
-    /**
-     * 是否显示
-     */
-    hide?: Function | boolean;
 
     /**
      * 构造函数
      */
-    constructor(label: string, eType: SheetFormType.eType, prop: keyof Model) {
-        this.eType = eType
+    constructor(label: string, prop: keyof Model) {
         this.label = label
         this.prop = prop
     }

@@ -3,33 +3,69 @@ import BaseType from "@/frame/model/base/base-type.ts";
 /**
  * 功能框命名空间
  */
-namespace SheetFormType {
-    /**
-     * 组件名称
-     */
-    type eType = "el-input" | "el-select" | "el-date-picker" | "el-time-picker"
-    /**
-     * 绑定
-     */
-    type props = SheetFormItemPropsModel
+namespace TableType {
+
+    type eType = "el-button"
 
     /**
-     * props接口
+     * 表格样式模型
      */
-    interface SheetFormItemPropsModel {
+    interface TablePropsModel {
         /**
-         * 提示
+         * 是否开启边框
          */
-        placeholder?: string;
+        border?: BaseType.bool
         /**
-         * 是否可清空
+         * 是否开启斑马纹
          */
-        clearable?: boolean;
+        stripe?: BaseType.bool
+    }
+
+    /**
+     * 表格页码模型
+     */
+    interface TablePageModel {
         /**
-         * 是否禁用
+         * 是否开启
          */
-        disabled?: Function | BaseType.bool;
+        enable?: BaseType.bool
+        /**
+         * 每页显示多少条数据
+         */
+        pageSize?: number
+    }
+
+    /**
+     * 操作栏样式
+     */
+    interface TableOperationItemPropsModel {
+        /**
+         * 类型
+         */
+        type?: string
+        /**
+         * 是否有边框
+         */
+        link?: BaseType.bool
+        /**
+         * 尺寸
+         */
+        size?: string
+        /**
+         * 是否关闭
+         */
+        disabled: Function | BaseType.bool
+    }
+
+    /**
+     * 表格子项样式
+     */
+    interface TableItemPropsModel {
+        /**
+         * 是否排序
+         */
+        sortable?: boolean;
     }
 }
 
-export default SheetFormType;
+export default TableType

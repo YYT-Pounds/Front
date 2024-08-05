@@ -9,13 +9,12 @@ export default {
 
 <script lang="tsx" setup>
 import {h, ref, resolveComponent, watch, defineEmits, defineProps} from 'vue'
-import {TableModel} from "@/frame/model/base/config/table/table";
+import TableManager from "@/frame/components/base/table/table-manager.ts"
 
 /**
  * 定义emit
  */
 const emit = defineEmits<{
-  (e: 'handleSelectionChange', rows: any[]): void;
   (e: 'handlePageDataChange', index: number, size: number): void
 }>()
 
@@ -23,15 +22,26 @@ const emit = defineEmits<{
  * 定义props
  */
 const props = defineProps<{
-  table: TableModel,
+  tableModel: TableManager<any>,
   tableData?: any[]
 }>()
 
 /**
  * 数据
  */
+const tableModel = ref<TableManager<any>>()
 const tableRef = ref()
 const tableData = ref()
+
+/**
+ * 监视props
+ */
+watch(() => props, function (newValue) {
+  if (newValue) {
+    tableModel.value = newValue.tableModel
+    tableData.value = newValue.tableData || []
+  }
+})
 
 /**
  * 当前页码
@@ -40,12 +50,16 @@ const currentPage = ref(1)
 /**
  * 一页显示多少数据
  */
-const pageSize = ref(props.table.page?.pageSize || 20)
+const pageSize = ref(tableModel.page?.pageSize || 20)
+/**
+ * 当前选中数据
+ */
+const rowsData = ref()
 
 /**
  * 操作栏初始化
  */
-function render({item}: any) {
+const render = ({item}: any) => {
   const {type, props} = item
   const Type = resolveComponent(type)
   return h(Type, {
@@ -55,17 +69,17 @@ function render({item}: any) {
 }
 
 /**
- * 初始化
- */
-const init = () => {
-  handleSizeChange(props.table.page?.pageSize || 20)
-}
-
-/**
  * 多选
  */
 const handleSelectionChange = (rows: any[]) => {
-  emit('handleSelectionChange', rows)
+  rowsData.value = rows
+}
+
+/**
+ * 获取选择的数据
+ */
+const getSelectionData = () => {
+  return rowsData.value
 }
 
 /**
@@ -83,13 +97,20 @@ const handleCurrentChange = (val: number) => {
   emit("handlePageDataChange", currentPage.value, pageSize.value)
 }
 
+
+/**
+ * 初始化
+ */
+const init = () => {
+  handleSizeChange(props.table.page?.pageSize || 20)
+}
 init()
 
 /**
- * 监视表格数据
+ * 暴露
  */
-watch(() => props.tableData, function (value) {
-  tableData.value = value || []
+defineExpose({
+  getSelectionData
 })
 </script>
 

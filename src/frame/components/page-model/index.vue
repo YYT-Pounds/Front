@@ -8,7 +8,6 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import SearchFormManager from './components/search-form/index.vue'
 import ProgramForm from './components/program-form/index.vue'
 import Table from './components/table/index.vue'
 import Form from './components/form/index.vue'

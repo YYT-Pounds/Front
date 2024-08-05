@@ -21,15 +21,6 @@ const routerList: RouteRecordRaw[] = [
             title: "客户管理",
             icon: "Edit"
         }
-    },
-    {
-        path: "/code-rule",
-        name: "code-rule",
-        component: () => import("@/pages/code-rule/index.vue"),
-        meta: {
-            title: "编码规则",
-            icon: "Edit"
-        }
     }
 ]
 

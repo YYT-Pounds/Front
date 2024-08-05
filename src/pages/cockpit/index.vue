@@ -39,40 +39,41 @@ const pageModelRef = ref()
 const config = definePageModel({
   url: "http://118.178.254.102:1254/peaceful/admin/select",
   method: "GET",
-  otherParams: {
-    id: 1111
+  searchForm: {
+    els: [
+      {
+        eType: 'el-input',
+        prop: "name",
+        props: {
+          placeholder: "请输入名称",
+          clearable: true,
+        },
+        renderFn() {
+          return <div>1111</div>
+        }
+      },
+      {
+        eType: 'el-input',
+        prop: "account",
+        props: {
+          placeholder: "请输入账号",
+          clearable: true
+        }
+      }
+    ]
   },
-  searchForm: [
-    {
-      type: 'el-input',
-      prop: "name",
-      props: {
-        placeholder: "请输入名称",
-        clearable: true,
+  programForm: {
+    els: [
+      {
+        label: "新增",
+        eType: 'el-button',
+        props: {
+          type: "primary",
+        },
+        event: handleAdd
       },
-      renderFn() {
-        return <div>1111</div>
-      }
-    },
-    {
-      type: 'el-input',
-      prop: "account",
-      props: {
-        placeholder: "请输入账号",
-        clearable: true
-      }
-    }
-  ],
-  programForm: [
-    {
-      label: "新增",
-      type: 'el-button',
-      props: {
-        type: "primary",
-      },
-      event: handleAdd
-    },
-  ],
+    ]
+  },
   table: {
     page: {
       enable: false,
@@ -82,7 +83,7 @@ const config = definePageModel({
       width: 160,
       els: [
         {
-          type: "el-button",
+          eType: "el-button",
           label: "编辑",
           event: handleEdit,
           props: {
@@ -91,7 +92,7 @@ const config = definePageModel({
           }
         },
         {
-          type: "el-button",
+          eType: "el-button",
           label: "删除",
           event: handleDelete,
           props: {
@@ -138,36 +139,37 @@ const config = definePageModel({
   },
   form: {
     title: "新增/编辑",
-    labelWidth: "100px",
-    width: "500px",
-    els: [
-      {
-        label: "用户名",
-        type: "el-input",
-        prop: "name",
-        props: {
-          placeholder: "请输入用户名",
-          clearable: true
+    width: 500,
+    form: {
+      labelWidth: "100px",
+      els: [
+        {
+          label: "用户名",
+          eType: "el-input",
+          prop: "name",
+          props: {
+            placeholder: "请输入用户名",
+            clearable: true
+          }
+        },
+        {
+          label: "用户名",
+          eType: "el-input",
+          prop: "name",
+          props: {
+            placeholder: "请输入用户名",
+            clearable: true
+          }
         }
-      },
-      {
-        label: "用户名",
-        type: "el-input",
-        prop: "name",
-        props: {
-          placeholder: "请输入用户名",
-          clearable: true
-        }
-      }
-    ]
+      ]
+    }
   }
 })
 </script>
 
 <template>
   <div class="customer">
-    <PageModel ref="pageModelRef" :config="config">
-    </PageModel>
+    <PageModel ref="pageModelRef" :PageModel="config"/>
   </div>
 </template>
 

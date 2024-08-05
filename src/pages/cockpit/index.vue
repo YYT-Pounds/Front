@@ -12,32 +12,11 @@ import {ref} from "vue";
 import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts";
 
 /**
- * 新增
- */
-const handleAdd = () => {
-  pageModelRef.value.handleAdd()
-}
-
-/**
- * 编辑
- */
-const handleEdit = (row: any) => {
-  pageModelRef.value.handleEdit(row)
-}
-
-/**
- * 删除
- */
-const handleDelete = (row: any) => {
-  pageModelRef.value.handleDelete(row)
-}
-
-/**
  * 页面模型
  */
 const pageModelRef = ref()
 const config = definePageModel<any>({
-  url: "http://118.178.254.102:1254/peaceful/admin/select",
+  url: "/api/",
   searchForm: {
     els: [
       {
@@ -84,7 +63,7 @@ const config = definePageModel<any>({
         {
           eType: "el-button",
           label: "编辑",
-          event: handleEdit,
+          event: "edit",
           props: {
             type: "primary",
             link: true
@@ -93,7 +72,7 @@ const config = definePageModel<any>({
         {
           eType: "el-button",
           label: "删除",
-          event: handleDelete,
+          event: "delete",
           props: {
             type: "primary",
             link: true
@@ -164,11 +143,32 @@ const config = definePageModel<any>({
     }
   }
 })
+
+/**
+ * 新增
+ */
+const handleAdd = () => {
+  pageModelRef.value.handleAdd()
+}
+
+/**
+ * 编辑
+ */
+const handleEdit = (row: any) => {
+  pageModelRef.value.handleEdit(row)
+}
+
+/**
+ * 删除
+ */
+const handleDelete = (row: any) => {
+  pageModelRef.value.handleDelete(row)
+}
 </script>
 
 <template>
   <div class="customer">
-    <PageModel ref="pageModelRef" :PageModel="config" @add="handleAdd"/>
+    <PageModel ref="pageModelRef" :PageModel="config" @add="handleAdd" @delete="handleDelete" @edit="handleEdit"/>
   </div>
 </template>
 

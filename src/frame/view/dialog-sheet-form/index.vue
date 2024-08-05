@@ -20,6 +20,13 @@ const props = defineProps<{
 }>()
 
 /**
+ * 定义emit
+ */
+const emit = defineEmits<{
+  (event: "submit", params: any): void;
+}>()
+
+/**
  * 弹窗模型
  */
 const dialogSheetFormModel = ref<DialogSheetFormManager<any>>()
@@ -70,7 +77,8 @@ const setFormData = (data: any) => {
  * 提交表单
  */
 const handleSubmit = () => {
-
+  emit("submit", getFormData())
+  visible.value = false
 }
 
 defineExpose({

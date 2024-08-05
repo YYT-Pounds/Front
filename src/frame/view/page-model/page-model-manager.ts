@@ -12,9 +12,21 @@ class PageModelManager<Model> {
      */
     url: string
     /**
-     * 请求方法
+     * get请求地址
      */
-    method: string
+    getUrl?: string
+    /**
+     * post请求地址
+     */
+    postUrl?: string
+    /**
+     * put请求地址
+     */
+    putUrl?: string
+    /**
+     * delete请求地址
+     */
+    deleteUrl?: string
     /**
      * 自定义参数
      */

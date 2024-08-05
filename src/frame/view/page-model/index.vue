@@ -15,6 +15,7 @@ import ProgramForm from "@/frame/components/base/program-form/index.vue";
 import Table from "@/frame/components/base/table/index.vue";
 import Form from "@/frame/view/dialog-sheet-form/index.vue"
 import {processRequest} from "@/frame/apis";
+import {ElMessage, ElMessageBox} from "element-plus";
 
 /**
  * 定义props
@@ -49,9 +50,20 @@ const tableRef = ref()
 const formRef = ref()
 
 /**
+ * 加载
+ */
+const isLoading = ref(false)
+
+/**
+ * 是否为编辑
+ */
+const isEdit = ref()
+
+/**
  * 内置事件 -- 新增
  */
 const handleAdd = () => {
+  isEdit.value = false
   formRef.value.show({})
 }
 
@@ -59,7 +71,28 @@ const handleAdd = () => {
  * 内置事件 -- 编辑
  */
 const handleEdit = (row: any) => {
-  formRef.value.show({row})
+  isEdit.value = true
+  formRef.value.show(row)
+}
+
+/**
+ * 内置事件 -- 删除
+ */
+const handleDelete = async (row: any) => {
+  await ElMessageBox.confirm("是否确认删除？", "删除", {
+    type: "error"
+  })
+  isLoading.value = true
+  try {
+    await processRequest.delete(pageModel.value?.deleteUrl || pageModel.value?.url as string, {
+      id: row.id
+    })
+    ElMessage.success("删除成功")
+    await refreshTableData()
+  } catch (e) {
+  } finally {
+    isLoading.value = false
+  }
 }
 
 /**
@@ -105,16 +138,49 @@ const setFormData = (data: any) => {
 }
 
 /**
+ * 监听表格提交
+ */
+const handleSubmit = async (params: any) => {
+  await ElMessageBox.confirm("是否确认提交？", "提交", {
+    type: "success"
+  })
+  isLoading.value = true
+  try {
+    if (isEdit) {
+      await processRequest.put(pageModel.value?.putUrl || pageModel.value?.url as string, {
+        ...params
+      })
+    } else {
+      await processRequest.post(pageModel.value?.postUrl || pageModel.value?.url as string, {
+        ...params
+      })
+    }
+    ElMessage.success(isEdit.value ? "编辑成功" : "新增成功")
+    await refreshTableData()
+  } catch (e) {
+  } finally {
+    isLoading.value = false
+  }
+}
+
+/**
  * 刷新表格
  */
 const refreshTableData = async () => {
-  const pageData = tableRef.value.getPaginationData()
-  const searchData = searchFormRef.value.getSearchFormData()
-  const result: any = await processRequest.get(pageModel.value?.url as string, {
-    ...pageData,
-    ...searchData
-  })
-  setTableData(result)
+  isLoading.value = true
+  try {
+    const pageData = tableRef.value.getPaginationData()
+    const searchData = searchFormRef.value.getSearchFormData()
+    const result: any = await processRequest.get(pageModel.value?.getUrl || pageModel.value?.url as string, {
+      ...pageData,
+      ...searchData
+    })
+    setTableData(result)
+    ElMessage.success("刷新成功")
+  } catch (e) {
+  } finally {
+    isLoading.value = false
+  }
 }
 
 /**
@@ -123,6 +189,7 @@ const refreshTableData = async () => {
 defineExpose({
   handleAdd,
   handleEdit,
+  handleDelete,
   refreshTableData,
   getSearchFormData,
   getTableSelectData,
@@ -134,7 +201,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="content-logout">
+  <div v-loading="isLoading" class="content-logout" element-loading-text="请稍等">
     <div v-if="pageModel?.searchForm" class="search-form">
       <slot name="search-form">
         <SearchForm ref="searchFormRef" :searchFormModel="pageModel?.searchForm" @refreshTableData="refreshTableData"/>
@@ -151,7 +218,7 @@ defineExpose({
       </slot>
     </div>
     <div v-if="pageModel?.form" class="form">
-      <Form ref="formRef" :dialogSheetFormModel="pageModel?.form"/>
+      <Form ref="formRef" :dialogSheetFormModel="pageModel?.form" @submit="handleSubmit"/>
     </div>
   </div>
 </template>

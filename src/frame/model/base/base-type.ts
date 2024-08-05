@@ -9,7 +9,7 @@ declare namespace BaseType {
     /**
      * 组件类型
      */
-    type type = "primary" | "danger" | "warning" | "info" | ""
+    type type = "primary" | "error" | "warning" | "info" | ""
 }
 
 /**

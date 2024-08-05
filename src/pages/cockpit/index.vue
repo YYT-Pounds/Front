@@ -36,9 +36,8 @@ const handleDelete = (row: any) => {
  * 页面模型
  */
 const pageModelRef = ref()
-const config = definePageModel({
+const config = definePageModel<any>({
   url: "http://118.178.254.102:1254/peaceful/admin/select",
-  method: "GET",
   searchForm: {
     els: [
       {

@@ -30,7 +30,7 @@ class PageModelManager<Model> {
     /**
      * 自定义参数
      */
-    otherParams?: keyof Model
+    otherParams?: Model
     /**
      * 搜索组件模型
      */
@@ -51,9 +51,8 @@ class PageModelManager<Model> {
     /**
      * 构造函数
      */
-    constructor(url: string, method: string, table: TableManager<Model>) {
+    constructor(url: string, table: TableManager<Model>) {
         this.url = url
-        this.method = method
         this.table = table
     }
 }

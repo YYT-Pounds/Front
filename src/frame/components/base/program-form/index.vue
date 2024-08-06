@@ -35,7 +35,7 @@ const render = ({item}: any) => {
   const {eType, event, props} = item
   const Type = resolveComponent(eType)
   return h(Type, {
-        onClick(){
+        onClick() {
           emit(event)
         },
         ...Object.assign({}, props)

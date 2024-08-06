@@ -8,7 +8,7 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {nextTick, onMounted, ref} from "vue";
+import {ref} from "vue";
 import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts";
 
 /**

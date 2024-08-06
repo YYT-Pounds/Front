@@ -37,6 +37,14 @@ class SearchFormItemManager<Model> {
      * 绑定
      */
     props?: SearchFormType.SearchFormTypePropsModel<Model>
+    /**
+     * 自定义渲染函数
+     */
+    renderFn?: (this: any, data: Model) => JSX.Element
+    /**
+     * 是否隐藏
+     */
+    hide?: (data: Model) => boolean
 
     /**
      * 构造函数
@@ -45,16 +53,6 @@ class SearchFormItemManager<Model> {
         this.eType = eType
         this.prop = prop
     }
-
-    /**
-     * 自定义渲染函数
-     */
-    renderFn?: (this: any, data: Model) => JSX.Element
-
-    /**
-     * 是否隐藏
-     */
-    hide?: (data: Model) => boolean
 }
 
 /**

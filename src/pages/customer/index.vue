@@ -68,7 +68,7 @@ const config = definePageModel<any>({
             type: "primary",
             link: true
           },
-          hide:false
+          hide: false
         },
         {
           eType: "el-button",
@@ -78,7 +78,7 @@ const config = definePageModel<any>({
             type: "primary",
             link: true
           },
-          hide:false
+          hide: false
         }
       ]
     },
@@ -149,7 +149,7 @@ const config = definePageModel<any>({
   }
 })
 
-onMounted(()=>{
+onMounted(() => {
   const tableData = [
     {
       id: 1,

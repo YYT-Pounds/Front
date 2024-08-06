@@ -3,14 +3,14 @@
  * 表格组件
  */
 export default {
-  name: "table"
+  name: "table-form"
 }
 
 </script>
 
 <script lang="tsx" setup>
 import {h, ref, resolveComponent, watch, defineEmits, defineProps, onMounted} from 'vue'
-import TableManager from "@/frame/components/base/table/table-manager.ts"
+import TableManager from "@/frame/components/base/table-form/table-manager.ts"
 
 /**
  * 定义emit
@@ -81,7 +81,7 @@ const render = ({item}: any) => {
   return h(Type, {
         ...Object.assign({}, props)
       },
-      [h('span', item.label)])
+      () => item.label)
 }
 
 /**

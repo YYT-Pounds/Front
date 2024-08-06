@@ -3,7 +3,7 @@ import {createApp} from "vue"
 import App from "./App.vue"
 import router from "@/frame/router"
 import ElementPlus from "element-plus"
-import zhCn from "element-plus/dist/locale/zh-cn.js"
+import zhCn from "element-plus/dist/locale/zh-cn"
 import "element-plus/dist/index.css"
 import * as Icons from '@element-plus/icons-vue'
 

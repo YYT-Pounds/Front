@@ -12,7 +12,7 @@ import {ref, defineProps, watch} from "vue";
 import PageModelManager from "./page-model-manager.ts";
 import SearchForm from "@/frame/components/base/search-form/index.vue";
 import ProgramForm from "@/frame/components/base/program-form/index.vue";
-import Table from "@/frame/components/base/table/index.vue";
+import TableForm from "@/frame/components/base/table-form/index.vue";
 import Form from "@/frame/view/dialog-sheet-form/index.vue"
 import {processRequest} from "@/frame/apis";
 import {ElMessage, ElMessageBox} from "element-plus";
@@ -211,7 +211,7 @@ defineExpose({
     </div>
     <div v-if="pageModel?.table" class="table">
       <slot name="table">
-        <Table ref="tableRef" :tableModel="pageModel.table" v-bind="$attrs" @refreshTableData="refreshTableData"/>
+        <TableForm ref="tableRef" :tableModel="pageModel.table" v-bind="$attrs" @refreshTableData="refreshTableData"/>
       </slot>
     </div>
     <div v-if="pageModel?.form" class="form">

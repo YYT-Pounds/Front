@@ -1,6 +1,6 @@
 import SearchFormManager from "@/frame/components/base/search-form/search-form-manager.ts";
 import ProgramFormManager from "@/frame/components/base/program-form/program-form-manager.ts";
-import TableManager from "@/frame/components/base/table/table-manager.ts";
+import TableManager from "@/frame/components/base/table-form/table-manager.ts";
 import DialogSheetFormManager from "@/frame/view/dialog-sheet-form/dialog-sheet-form-manager.ts";
 
 /**

@@ -24,7 +24,7 @@ namespace SearchFormType {
         /**
          * 是否禁用
          */
-        disabled?: (data:Model) => boolean
+        disabled?: (data: Model) => boolean
     }
 }
 

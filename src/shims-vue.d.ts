@@ -1,4 +1,4 @@
-import {ComponentCustomProps, DefineComponent} from "vue"
+import {DefineComponent} from "vue"
 import "vue/jsx"
 
 declare module 'vue' {

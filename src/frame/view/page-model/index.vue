@@ -211,7 +211,7 @@ defineExpose({
     </div>
     <div v-if="pageModel?.table" class="table">
       <slot name="table">
-        <Table ref="tableRef" :table="pageModel?.table" v-bind="$attrs" @refreshTableData="refreshTableData"/>
+        <Table ref="tableRef" :tableModel="pageModel.table" v-bind="$attrs" @refreshTableData="refreshTableData"/>
       </slot>
     </div>
     <div v-if="pageModel?.form" class="form">

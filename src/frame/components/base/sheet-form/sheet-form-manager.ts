@@ -9,14 +9,6 @@ class SheetFormManager<Model> {
      */
     labelWidth: string
     /**
-     * 绑定数据前操作
-     */
-    bindData?: (data: Model) => boolean
-    /**
-     * 提交数据前操作
-     */
-    beforeSubmit?: (data: Model) => boolean
-    /**
      * 渲染列表
      */
     els: SheetFormItemManager<Model>[]

@@ -8,7 +8,7 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {ref} from "vue";
+import {nextTick, onMounted, ref} from "vue";
 import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts";
 
 /**
@@ -118,6 +118,12 @@ const config = definePageModel<any>({
   form: {
     title: "新增/编辑",
     width: 500,
+    async bindData(data: any) {
+      return data
+    },
+    async beforeSubmit(data: any) {
+      return data
+    },
     form: {
       labelWidth: "100px",
       els: [

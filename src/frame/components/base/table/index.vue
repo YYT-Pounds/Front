@@ -36,13 +36,27 @@ const tableRef = ref()
 const tableData = ref()
 
 /**
- * 监视props
+ * 监视props的table模型
  */
-watch(() => props, function (newValue) {
+watch(() => props.tableModel, function (newValue) {
   if (newValue) {
-    tableModel.value = newValue.tableModel
-    tableData.value = newValue.tableData || []
+    tableModel.value = newValue
   }
+}, {
+  deep: true,
+  immediate: true
+})
+
+/**
+ * 监视props的table数据
+ */
+watch(() => props.tableData, function (newValue) {
+  if (newValue) {
+    tableData.value = newValue
+  }
+}, {
+  deep: true,
+  immediate: true
 })
 
 /**

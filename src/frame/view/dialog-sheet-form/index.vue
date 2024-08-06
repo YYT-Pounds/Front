@@ -49,9 +49,13 @@ watch(() => props.dialogSheetFormModel, function (newValue: any) {
  */
 const SheetFormRef = ref()
 const visible = ref(false)
-const show = (params: any) => {
+const show = async (params: any) => {
   visible.value = true
   if (params?.id) {
+    if (dialogSheetFormModel.value?.bindData) {
+      const formData = await dialogSheetFormModel.value?.bindData(params?.row)
+      SheetFormRef.value.setFormData(formData)
+    }
     SheetFormRef.value.setFormData(params?.row)
   }
 }
@@ -81,7 +85,11 @@ const handleSubmit = async () => {
   await ElMessageBox.confirm("是否确认提交？", "提交", {
     type: "success"
   })
-  emit("submit", getFormData())
+  let formData = getFormData()
+  if (dialogSheetFormModel.value?.beforeSubmit) {
+    formData = await dialogSheetFormModel.value.beforeSubmit(formData)
+  }
+  emit("submit", formData)
   visible.value = false
 }
 
@@ -96,7 +104,7 @@ defineExpose({
   <div class="form">
     <el-dialog v-model="visible" :before-close="close" :title="dialogSheetFormModel?.title"
                :width="dialogSheetFormModel?.width">
-      <div class="form-content">
+      <div v-if="dialogSheetFormModel?.form" class="form-content">
         <SheetForm ref="SheetFormRef" :SheetFormModel="dialogSheetFormModel?.form"/>
       </div>
       <div class="form-bottom">

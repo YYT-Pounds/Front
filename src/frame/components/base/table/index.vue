@@ -16,7 +16,8 @@ import TableManager from "@/frame/components/base/table/table-manager.ts"
  * 定义emit
  */
 const emit = defineEmits<{
-  (e: 'refreshTableData'): void
+  (e: "refreshTableData"): void
+  (e: string, data: any[]): void
 }>()
 
 /**
@@ -162,7 +163,7 @@ defineExpose({
               <div v-for="(item,index) of tableModel?.operation?.els" v-show="!item.hide" :key="index"
                    class="table-operation-item">
                 <component :is="item.renderFn" v-if="item.renderFn"/>
-                <render v-else :item="item" @click="item.event(scope.row)"/>
+                <render v-else :item="item" @click="emit(item.event,scope.row)"/>
               </div>
             </div>
           </template>

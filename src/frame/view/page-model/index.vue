@@ -141,12 +141,9 @@ const setFormData = (data: any) => {
  * 监听表格提交
  */
 const handleSubmit = async (params: any) => {
-  await ElMessageBox.confirm("是否确认提交？", "提交", {
-    type: "success"
-  })
   isLoading.value = true
   try {
-    if (isEdit) {
+    if (isEdit.value) {
       await processRequest.put(pageModel.value?.putUrl || pageModel.value?.url as string, {
         ...params
       })
@@ -209,12 +206,12 @@ defineExpose({
     </div>
     <div v-if="pageModel?.programForm" class="program-form">
       <slot name="program-form">
-        <ProgramForm ref="programFormRef" :programFormModel="pageModel?.programForm" v-bind="$attrs" />
+        <ProgramForm ref="programFormRef" :programFormModel="pageModel?.programForm" v-bind="$attrs"/>
       </slot>
     </div>
     <div v-if="pageModel?.table" class="table">
       <slot name="table">
-        <Table ref="tableRef" :table="pageModel?.table" @refreshTableData="refreshTableData"/>
+        <Table ref="tableRef" :table="pageModel?.table" v-bind="$attrs" @refreshTableData="refreshTableData"/>
       </slot>
     </div>
     <div v-if="pageModel?.form" class="form">

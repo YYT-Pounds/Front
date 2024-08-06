@@ -11,6 +11,7 @@ export default {
 import {ref, defineProps, watch} from "vue";
 import DialogSheetFormManager from "./dialog-sheet-form-manager.ts";
 import SheetForm from "@/frame/components/base/sheet-form/index.vue";
+import {ElMessageBox} from "element-plus";
 
 /**
  * 定义props
@@ -76,7 +77,10 @@ const setFormData = (data: any) => {
 /**
  * 提交表单
  */
-const handleSubmit = () => {
+const handleSubmit = async () => {
+  await ElMessageBox.confirm("是否确认提交？", "提交", {
+    type: "success"
+  })
   emit("submit", getFormData())
   visible.value = false
 }

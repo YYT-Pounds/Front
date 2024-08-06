@@ -44,7 +44,9 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/**/*.scss"
+    "src/**/*.scss",
+    "src/**/*.js",
+    "src/**/*.jsx"
   ],
   "references": [
     {

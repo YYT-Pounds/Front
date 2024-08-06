@@ -8,7 +8,7 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts";
 
 /**
@@ -67,7 +67,8 @@ const config = definePageModel<any>({
           props: {
             type: "primary",
             link: true
-          }
+          },
+          hide:false
         },
         {
           eType: "el-button",
@@ -76,7 +77,8 @@ const config = definePageModel<any>({
           props: {
             type: "primary",
             link: true
-          }
+          },
+          hide:false
         }
       ]
     },
@@ -145,6 +147,33 @@ const config = definePageModel<any>({
       ]
     }
   }
+})
+
+onMounted(()=>{
+  const tableData = [
+    {
+      id: 1,
+      name: 'John Doe',
+      account: 'john.doe',
+      password: '123456',
+      note: 'This is John Doe'
+    },
+    {
+      id: 2,
+      name: 'John Doe',
+      account: 'john.doe',
+      password: '123456',
+      note: 'This is John Doe'
+    },
+    {
+      id: 2,
+      name: 'John Doe',
+      account: 'john.doe',
+      password: '123456',
+      note: 'This is John Doe'
+    },
+  ]
+  pageModelRef.value.setTableData(tableData)
 })
 
 /**

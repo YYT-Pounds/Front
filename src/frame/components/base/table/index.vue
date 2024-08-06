@@ -9,7 +9,7 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {h, ref, resolveComponent, watch, defineEmits, defineProps, nextTick} from 'vue'
+import {h, ref, resolveComponent, watch, defineEmits, defineProps, onMounted} from 'vue'
 import TableManager from "@/frame/components/base/table/table-manager.ts"
 
 /**
@@ -76,8 +76,8 @@ const rowsData = ref()
  * 操作栏初始化
  */
 const render = ({item}: any) => {
-  const {type, props} = item
-  const Type = resolveComponent(type)
+  const {eType, props} = item
+  const Type = resolveComponent(eType)
   return h(Type, {
         ...Object.assign({}, props)
       },
@@ -139,12 +139,9 @@ const setTableData = (data: any) => {
 /**
  * 初始化
  */
-const init = () => {
-  nextTick(() => {
-    handleSizeChange(tableModel.value?.page?.pageSize || 20)
-  })
-}
-init()
+onMounted(() => {
+  handleSizeChange(tableModel.value?.page?.pageSize || 20)
+})
 
 /**
  * 暴露
@@ -174,7 +171,7 @@ defineExpose({
         <el-table-column v-if="tableModel?.operation?.els" :width="tableModel?.operation?.width" label="操作栏">
           <template #default="scope">
             <div class="table-operation-list">
-              <div v-for="(item,index) of tableModel?.operation?.els" v-show="!item.hide" :key="index"
+              <div v-for="(item,index) of tableModel?.operation?.els" v-show="!item?.hide" :key="index"
                    class="table-operation-item">
                 <component :is="item.renderFn" v-if="item.renderFn"/>
                 <render v-else :item="item" @click="emit(item.event,scope.row)"/>

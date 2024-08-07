@@ -13,25 +13,17 @@ class DialogSheetFormManager<Model> {
      */
     width: number;
     /**
-     * 绑定数据前操作
-     */
-    bindData?: (data: Model) => Model
-    /**
-     * 提交数据前操作
-     */
-    beforeSubmit?: (data: Model) => Model
-    /**
      * 表单核心
      */
-    form: SheetFormManager<Model>
+    sheetForm: SheetFormManager<Model>
 
     /**
      * 构造函数
      */
-    constructor(title: string, width: number, form: SheetFormManager<Model>) {
+    constructor(title: string, width: number, sheetForm: SheetFormManager<Model>) {
         this.title = title
         this.width = width
-        this.form = form
+        this.sheetForm = sheetForm
     }
 }
 

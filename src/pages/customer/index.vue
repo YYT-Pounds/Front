@@ -11,13 +11,24 @@ export default {
 import {onMounted, ref} from "vue";
 import {definePageModel, PageModel} from "@/frame/view/page-model/constructor.ts";
 
+type Customer = {
+  id: string
+  name: string
+  account: string
+  password: string
+  note: string
+}
+
 /**
  * 页面模型
  */
 const pageModelRef = ref()
-const config = definePageModel<any>({
+const config = definePageModel<Customer>({
   url: "/api/admin/select",
   searchForm: {
+    initValue: {
+      name: "123"
+    },
     els: [
       {
         eType: 'el-input',
@@ -25,9 +36,6 @@ const config = definePageModel<any>({
         props: {
           placeholder: "请输入名称",
           clearable: true,
-        },
-        renderFn() {
-          return <div>1111</div>
         }
       },
       {
@@ -35,6 +43,14 @@ const config = definePageModel<any>({
         prop: "account",
         props: {
           placeholder: "请输入账号",
+          clearable: true
+        }
+      },
+      {
+        eType: 'el-input',
+        prop: "password",
+        props: {
+          placeholder: "请输入密码",
           clearable: true
         }
       }
@@ -120,7 +136,13 @@ const config = definePageModel<any>({
   form: {
     title: "新增/编辑",
     width: 500,
-    form: {
+    sheetForm: {
+      bindData(data) {
+        return data
+      },
+      initValue: {
+        name: "heihei"
+      },
       labelWidth: "100px",
       els: [
         {

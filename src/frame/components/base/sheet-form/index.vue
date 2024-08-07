@@ -9,7 +9,7 @@ export default {
 
 <script lang="tsx" setup>
 import SheetFormManager from "./sheet-form-manager.ts";
-import {h, ref, resolveComponent, defineProps, watch} from "vue";
+import {h, ref, resolveComponent, defineProps, watch, nextTick} from "vue";
 
 /**
  * 定义props
@@ -47,6 +47,9 @@ const render = ({item}: any) => {
 watch(() => props.SheetFormModel, function (newValue: any) {
   if (newValue) {
     sheetFormModel.value = newValue
+    nextTick(()=>{
+      setFormData(newValue.initValue)
+    })
   }
 }, {
   deep: true,
@@ -54,17 +57,24 @@ watch(() => props.SheetFormModel, function (newValue: any) {
 })
 
 /**
- * 获取表单数据
+ * 获取表单原始数据
  */
-const getFormData = () => {
+const getFormData = async () => {
+  if (sheetFormModel.value?.beforeSubmit) {
+    return await sheetFormModel.value.beforeSubmit(sheetFormData.value)
+  }
   return sheetFormData.value
 }
 
 /**
  * 设置表单数据
  */
-const setFormData = (data: any) => {
-  sheetFormData.value = {...data}
+const setFormData = async (data: any) => {
+  if (sheetFormModel.value?.bindData) {
+    sheetFormData.value = await sheetFormModel.value.bindData(data)
+  } else {
+    sheetFormData.value = data
+  }
 }
 
 defineExpose({

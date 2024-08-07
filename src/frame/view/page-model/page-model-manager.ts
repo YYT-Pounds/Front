@@ -30,7 +30,7 @@ class PageModelManager<Model> {
     /**
      * 自定义参数
      */
-    otherParams?: Model
+    otherParams?: Partial<Model>
     /**
      * 搜索组件模型
      */

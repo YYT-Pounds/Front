@@ -5,6 +5,10 @@ import SearchFormType from "./type.ts";
  */
 class SearchFormManager<Model> {
     /**
+     * 初始值
+     */
+    initValue?: Partial<Model>
+    /**
      * 渲染列表
      */
     els: SearchFormItemManager<Model>[]

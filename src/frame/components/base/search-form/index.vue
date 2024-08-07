@@ -76,6 +76,7 @@ const getSearchFormData = () => {
 watch(() => props.searchFormModel, function (newValue: any) {
   if (newValue) {
     searchFormModel.value = newValue
+    searchFormData.value = newValue.initValue
   }
 }, {
   deep: true,

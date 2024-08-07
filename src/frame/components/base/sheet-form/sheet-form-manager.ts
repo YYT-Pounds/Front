@@ -9,6 +9,18 @@ class SheetFormManager<Model> {
      */
     labelWidth: string
     /**
+     * 初始值
+     */
+    initValue?: Partial<Model>
+    /**
+     * 绑定数据前操作
+     */
+    bindData?: (data: Model) => Model
+    /**
+     * 提交数据前操作
+     */
+    beforeSubmit?: (data: Model) => Model
+    /**
      * 渲染列表
      */
     els: SheetFormItemManager<Model>[]

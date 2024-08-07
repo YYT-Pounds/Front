@@ -49,23 +49,15 @@ watch(() => props.dialogSheetFormModel, function (newValue: any) {
  */
 const sheetFormRef = ref()
 const visible = ref(false)
-const show = async (params: any) => {
+const show = (params: any) => {
   visible.value = true
-  if (params?.id) {
-    if (dialogSheetFormModel.value?.bindData) {
-      const formData = await dialogSheetFormModel.value?.bindData(params)
-      nextTick(() => {
-        sheetFormRef.value.setFormData(formData)
-      })
-    } else {
-      nextTick(() => {
-        sheetFormRef.value.setFormData(params)
-      })
-    }
+  if (params.id) {
+    nextTick(() => {
+      setFormData(params)
+    })
   }
 }
 const close = () => {
-  sheetFormRef.value.setFormData({})
   visible.value = false
 }
 
@@ -90,10 +82,7 @@ const handleSubmit = async () => {
   await ElMessageBox.confirm("是否确认提交？", "提交", {
     type: "success"
   })
-  let formData = getFormData()
-  if (dialogSheetFormModel.value?.beforeSubmit) {
-    formData = await dialogSheetFormModel.value.beforeSubmit(formData)
-  }
+  const formData = await getFormData()
   emit("submit", formData)
   visible.value = false
 }
@@ -106,11 +95,11 @@ defineExpose({
 </script>
 
 <template>
-  <div class="form">
+  <div v-if="visible" class="form">
     <el-dialog v-model="visible" :before-close="close" :title="dialogSheetFormModel?.title"
                :width="dialogSheetFormModel?.width">
-      <div v-if="dialogSheetFormModel?.form" class="form-content">
-        <SheetForm ref="sheetFormRef" :SheetFormModel="dialogSheetFormModel?.form"/>
+      <div v-if="dialogSheetFormModel?.sheetForm" class="form-content">
+        <SheetForm ref="sheetFormRef" :SheetFormModel="dialogSheetFormModel?.sheetForm"/>
       </div>
       <div class="form-bottom">
         <el-button @click="close">取消</el-button>

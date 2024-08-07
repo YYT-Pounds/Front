@@ -10,6 +10,7 @@ export default {
 <script lang="tsx" setup>
 import SheetFormManager from "./sheet-form-manager.ts";
 import {h, ref, resolveComponent, defineProps, watch, nextTick} from "vue";
+import {cloneDeep} from "lodash"
 
 /**
  * 定义props
@@ -47,8 +48,8 @@ const render = ({item}: any) => {
 watch(() => props.SheetFormModel, function (newValue: any) {
   if (newValue) {
     sheetFormModel.value = newValue
-    nextTick(()=>{
-      setFormData(newValue.initValue)
+    nextTick(() => {
+      setFormData(cloneDeep(newValue.initValue))
     })
   }
 }, {
@@ -77,6 +78,9 @@ const setFormData = async (data: any) => {
   }
 }
 
+/**
+ * 暴露
+ */
 defineExpose({
   getFormData,
   setFormData

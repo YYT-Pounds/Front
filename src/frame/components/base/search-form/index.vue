@@ -8,8 +8,9 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {h, ref, resolveComponent, watch} from "vue";
+import {h, nextTick, ref, resolveComponent, watch} from "vue";
 import SearchFormManager from "./search-form-manager.ts";
+import {cloneDeep} from "lodash";
 
 /**
  * 定义props
@@ -66,8 +67,22 @@ const handleSearch = () => {
 /**
  * 获取筛选值
  */
-const getSearchFormData = () => {
+const getSearchFormData = async () => {
+  if (searchFormData.value?.beforeSubmit) {
+    return await searchFormData.value.beforeSubmit(searchFormData.value)
+  }
   return searchFormData.value
+}
+
+/**
+ * 设置筛选值
+ */
+const setSearchFormData = async (data: any) => {
+  if (searchFormData.value?.bindData) {
+    searchFormData.value = await searchFormData.value.bindData(data)
+  } else {
+    searchFormData.value = data
+  }
 }
 
 /**
@@ -76,7 +91,9 @@ const getSearchFormData = () => {
 watch(() => props.searchFormModel, function (newValue: any) {
   if (newValue) {
     searchFormModel.value = newValue
-    searchFormData.value = newValue.initValue
+    nextTick(() => {
+      setSearchFormData(cloneDeep(newValue.initValue))
+    })
   }
 }, {
   deep: true,
@@ -87,7 +104,8 @@ watch(() => props.searchFormModel, function (newValue: any) {
  * 暴露
  */
 defineExpose({
-  getSearchFormData
+  getSearchFormData,
+  setSearchFormData
 })
 </script>
 

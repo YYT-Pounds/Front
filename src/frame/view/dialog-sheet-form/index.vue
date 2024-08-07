@@ -8,7 +8,7 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {ref, defineProps, watch, nextTick} from "vue";
+import {ref, defineProps, watch} from "vue";
 import DialogSheetFormManager from "./dialog-sheet-form-manager.ts";
 import SheetForm from "@/frame/components/base/sheet-form/index.vue";
 import {ElMessageBox} from "element-plus";
@@ -49,13 +49,8 @@ watch(() => props.dialogSheetFormModel, function (newValue: any) {
  */
 const sheetFormRef = ref()
 const visible = ref(false)
-const show = (params: any) => {
+const show = () => {
   visible.value = true
-  if (params.id) {
-    nextTick(() => {
-      setFormData(params)
-    })
-  }
 }
 const close = () => {
   visible.value = false

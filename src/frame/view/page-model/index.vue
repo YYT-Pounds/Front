@@ -8,7 +8,7 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {ref, defineProps, watch} from "vue";
+import {ref, defineProps, watch, nextTick} from "vue";
 import PageModelManager from "./page-model-manager.ts";
 import SearchForm from "@/frame/components/base/search-form/index.vue";
 import ProgramForm from "@/frame/components/base/program-form/index.vue";
@@ -64,7 +64,7 @@ const isEdit = ref()
  */
 const handleAdd = () => {
   isEdit.value = false
-  formRef.value.show({})
+  formRef.value.show()
 }
 
 /**
@@ -72,7 +72,10 @@ const handleAdd = () => {
  */
 const handleEdit = (row: any) => {
   isEdit.value = true
-  formRef.value.show(row)
+  formRef.value.show()
+  nextTick(() => {
+    formRef.value.setFormData(row)
+  })
 }
 
 /**
@@ -100,6 +103,13 @@ const handleDelete = async (row: any) => {
  */
 const getSearchFormData = () => {
   return searchFormRef.value.getSearchFormData()
+}
+
+/**
+ * 设置搜索框数据
+ */
+const setSearchFormData = (data: any) => {
+  searchFormRef.value.setSearchFormData(data)
 }
 
 /**
@@ -189,6 +199,7 @@ defineExpose({
   handleDelete,
   refreshTableData,
   getSearchFormData,
+  setSearchFormData,
   getTableSelectData,
   getTableData,
   setTableData,

@@ -82,6 +82,9 @@ const handleSubmit = async () => {
   visible.value = false
 }
 
+/**
+ * 暴露
+ */
 defineExpose({
   show,
   getFormData,

@@ -138,6 +138,7 @@ const config = definePageModel<Customer>({
     width: 500,
     sheetForm: {
       bindData(data) {
+        console.log(data)
         return data
       },
       initValue: {

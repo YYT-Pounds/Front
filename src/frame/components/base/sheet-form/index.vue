@@ -9,7 +9,7 @@ export default {
 
 <script lang="tsx" setup>
 import SheetFormManager from "./sheet-form-manager.ts";
-import {h, ref, resolveComponent, defineProps, watch, nextTick} from "vue";
+import {h, ref, resolveComponent, defineProps, watch} from "vue";
 import {cloneDeep} from "lodash"
 
 /**
@@ -48,14 +48,20 @@ const render = ({item}: any) => {
 watch(() => props.SheetFormModel, function (newValue: any) {
   if (newValue) {
     sheetFormModel.value = newValue
-    nextTick(() => {
-      setFormData(cloneDeep(newValue.initValue))
-    })
   }
 }, {
   deep: true,
   immediate: true,
 })
+
+/**
+ * 初始化表单数据
+ */
+const initFormData = () => {
+  if (sheetFormModel.value?.initValue) {
+    setFormData(sheetFormModel.value?.initValue)
+  }
+}
 
 /**
  * 获取表单原始数据
@@ -72,9 +78,9 @@ const getFormData = async () => {
  */
 const setFormData = async (data: any) => {
   if (sheetFormModel.value?.bindData) {
-    sheetFormData.value = await sheetFormModel.value.bindData(data)
+    sheetFormData.value = await sheetFormModel.value.bindData(cloneDeep(data))
   } else {
-    sheetFormData.value = data
+    sheetFormData.value = cloneDeep(data)
   }
 }
 
@@ -82,6 +88,7 @@ const setFormData = async (data: any) => {
  * 暴露
  */
 defineExpose({
+  initFormData,
   getFormData,
   setFormData
 })

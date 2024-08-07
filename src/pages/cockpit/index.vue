@@ -118,13 +118,13 @@ const config = definePageModel<any>({
   form: {
     title: "新增/编辑",
     width: 500,
-    async bindData(data: any) {
-      return data
-    },
-    async beforeSubmit(data: any) {
-      return data
-    },
-    form: {
+    sheetForm: {
+      async bindData(data: any) {
+        return data
+      },
+      async beforeSubmit(data: any) {
+        return data
+      },
       labelWidth: "100px",
       els: [
         {

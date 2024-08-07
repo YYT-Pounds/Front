@@ -11,6 +11,7 @@ export default {
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import VerificationCode from "@/frame/components/business/verification-code/index.vue"
+import NumberCount from "@/frame/components/business/number-count/index.vue";
 
 /**
  * 定义router
@@ -52,6 +53,7 @@ const handleClick = () => {
                    required type="password">
             <label for="login_password"></label>
           </div>
+          <NumberCount :targetVal="10" />
           <VerificationCode ref="verificationCodeRef"/>
           <button class="login-btn" @click="handleClick">登录</button>
         </div>

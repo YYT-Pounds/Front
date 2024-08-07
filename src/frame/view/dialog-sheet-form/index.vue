@@ -8,7 +8,7 @@ export default {
 </script>
 
 <script lang="tsx" setup>
-import {ref, defineProps, watch} from "vue";
+import {ref, defineProps, watch, nextTick} from "vue";
 import DialogSheetFormManager from "./dialog-sheet-form-manager.ts";
 import SheetForm from "@/frame/components/base/sheet-form/index.vue";
 import {ElMessageBox} from "element-plus";
@@ -47,20 +47,25 @@ watch(() => props.dialogSheetFormModel, function (newValue: any) {
 /**
  * 显示表单
  */
-const SheetFormRef = ref()
+const sheetFormRef = ref()
 const visible = ref(false)
 const show = async (params: any) => {
   visible.value = true
   if (params?.id) {
     if (dialogSheetFormModel.value?.bindData) {
-      const formData = await dialogSheetFormModel.value?.bindData(params?.row)
-      SheetFormRef.value.setFormData(formData)
+      const formData = await dialogSheetFormModel.value?.bindData(params)
+      nextTick(() => {
+        sheetFormRef.value.setFormData(formData)
+      })
+    } else {
+      nextTick(() => {
+        sheetFormRef.value.setFormData(params)
+      })
     }
-    SheetFormRef.value.setFormData(params?.row)
   }
 }
 const close = () => {
-  SheetFormRef.value.setFormData({})
+  sheetFormRef.value.setFormData({})
   visible.value = false
 }
 
@@ -68,14 +73,14 @@ const close = () => {
  * 获取表单数据
  */
 const getFormData = () => {
-  return SheetFormRef.value.getFormData()
+  return sheetFormRef.value.getFormData()
 }
 
 /**
  * 设置表单数据
  */
 const setFormData = (data: any) => {
-  SheetFormRef.value.setFormData(data)
+  sheetFormRef.value.setFormData(data)
 }
 
 /**
@@ -105,7 +110,7 @@ defineExpose({
     <el-dialog v-model="visible" :before-close="close" :title="dialogSheetFormModel?.title"
                :width="dialogSheetFormModel?.width">
       <div v-if="dialogSheetFormModel?.form" class="form-content">
-        <SheetForm ref="SheetFormRef" :SheetFormModel="dialogSheetFormModel?.form"/>
+        <SheetForm ref="sheetFormRef" :SheetFormModel="dialogSheetFormModel?.form"/>
       </div>
       <div class="form-bottom">
         <el-button @click="close">取消</el-button>

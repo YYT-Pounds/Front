@@ -17,6 +17,7 @@ type Customer = {
   account: string
   password: string
   note: string
+  file: string
 }
 
 /**
@@ -171,6 +172,15 @@ const config = definePageModel<Customer>({
           props: {
             placeholder: "请输入密码",
             clearable: true
+          }
+        },
+        {
+          label: "附件",
+          eType: "el-upload",
+          prop: "file",
+          props: {
+            class: "upload-demo",
+            listType: "picture-card"
           }
         }
       ]

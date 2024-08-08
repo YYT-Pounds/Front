@@ -11,6 +11,8 @@ export default {
 import SheetFormManager from "./sheet-form-manager.ts";
 import {h, ref, resolveComponent, defineProps, watch} from "vue";
 import {cloneDeep} from "lodash"
+import uploadUrl from "@/frame/config/upload.ts";
+import {uploadFile} from "@/frame/utils/upload.ts";
 
 /**
  * 定义props
@@ -33,12 +35,17 @@ const sheetFormData = ref<any>({})
  * 初始化
  */
 const render = ({item}: any) => {
-  const {eType, prop, props} = item;
+  const {eType, prop, props} = item
+  if (eType === "el-upload") {
+    props.action = props.action ? props.action : uploadUrl
+    // props.HttpRequest = uploadFile
+  }
   const Type = resolveComponent(eType)
   return h(Type, {
     modelValue: sheetFormData.value[prop],
     onInput: (value: any) => sheetFormData.value[item.prop] = value,
-    ...Object.assign({}, props)
+    ...cloneDeep(props),
+    onHttpRequest: uploadFile
   })
 }
 
